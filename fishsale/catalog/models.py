@@ -8,6 +8,8 @@ class Category(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length = 250, help_text = 'Введите место вылова рыбы')
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     name = models.CharField(max_length = 250, help_text = "Введите название товара")
