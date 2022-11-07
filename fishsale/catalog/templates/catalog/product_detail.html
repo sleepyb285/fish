@@ -5,7 +5,7 @@
 
   <p><strong>Category:</strong> <a href="">{{ product.category }}</a></p>
   <p><strong>Price:</strong> {{ product.price }}</p>
-  <p><strong>Location:</strong> {% for location in product.location.all %} {{ location }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <p><strong>Location:</strong> {{ product.location }}</p>
 
   
 {% endblock %}
