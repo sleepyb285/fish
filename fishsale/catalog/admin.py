@@ -6,7 +6,11 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     pass
 
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+    pass
+
+admin.site.register(Category, CategoryAdmin)
 
 admin.site.register(Product, ProductAdmin)
 
