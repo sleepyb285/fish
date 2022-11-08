@@ -19,17 +19,16 @@ class Product(models.Model):
     location = models.ForeignKey(Location,on_delete = models.SET_NULL, null = True)
     price = models.IntegerField(null=True, help_text = "Введите стоимость рыбы")
     active = models.BooleanField(default = 0)
-    image = models.ImageField(null = True, upload_to = 'images/')
+    image = models.ImageField(null = True, upload_to = 'images/', blank = True)
     slug = models.SlugField (null=False, unique=True)
+
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        return reverse('product-detail', kwargs={"slug": self.slug})
+        return reverse('product-detail', kwargs={'pk': self.pk, 'slug': self.slug})
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
     class Meta:
         ordering = ["-price"]
-
-

@@ -1,5 +1,12 @@
 {% extends "base_generic.html" %}
 
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">product_list</a></li>
+  <li>placeholder4slug</li>
+{% endblock %}
+
 {% block content %}
   <h1>Name: {{ product.name }}</h1>
 
