@@ -2,8 +2,8 @@
 
 {% block breadcrumbs %}
 <ul class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">product_list</a></li>
+  <li><a href="{% url 'index' %}">Home</a></li>
+  <li><a href="{% url 'categories' %}">Categories</a></li>
   <li>placeholder4slug</li>
 {% endblock %}
 
@@ -13,6 +13,7 @@
   <p><strong>Category:</strong> <a href="">{{ product.category }}</a></p>
   <p><strong>Price:</strong> {{ product.price }}</p>
   <p><strong>Location:</strong> {{ product.location }}</p>
+  <p><strong>Photo:</strong> <img src ="{{ product.image }}"> </p>
 
   
 {% endblock %}

@@ -12,6 +12,8 @@ class Category(models.Model):
         return super().save(*args, **kwargs)
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+          return reverse('category-detail', args=[str(self.id)])
 
 class Location(models.Model):
     name = models.CharField(max_length = 250, help_text = 'Введите место вылова рыбы')
@@ -27,10 +29,15 @@ class Product(models.Model):
     image = models.ImageField(null = True, upload_to = 'images/', blank = True)
     slug = models.SlugField (null=False, unique=True)
 
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        return reverse('product-detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('product-detail', kwargs={'product_slug': self.slug})
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
