@@ -31,7 +31,7 @@ class Product(models.Model):
 
     @property
     def image_url(self):
-        if self.image:
+        if self.image and hasattr(self.image, 'url'):
             return self.image.url
 
     def __str__(self):

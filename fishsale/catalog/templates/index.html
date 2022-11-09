@@ -3,6 +3,18 @@
 {% block content %}
 <h1>Рыба</h1>
 
-  <p>Рыба <em>Рыба...</em></p>
+<h1>Random products</h1>
 
+    {% if random_product %}
+    <ul>
+
+      {% for product in random_product %}
+      <li>
+        <a href="{{ Product.get_absolute_url }}">{{ product.name }}</a> ({{product.location}}) {{product.price}}р
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>There are no fish in the store.</p>
+      {% endif %}
 {% endblock %}
