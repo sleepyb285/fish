@@ -42,6 +42,9 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
+        #Кстати, вот это вот не может быть причиной нерабочих слагов? в админке они автофиллы, а после сохранения снова кириллица?
+    def placeholder(self):
+        pass
         
     class Meta:
         ordering = ["-price"]
