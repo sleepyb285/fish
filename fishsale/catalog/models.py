@@ -42,5 +42,6 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
+        
     class Meta:
         ordering = ["-price"]

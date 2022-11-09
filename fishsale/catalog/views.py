@@ -3,9 +3,6 @@ from .models import Category,Product
 from django.views import generic
 
 # Create your views here.
-def index(request):
-    random_product = Product.objects.order_by('?')[:10]
-    return render(request,'index.html',{'random_product': random_product})
 
 class ProductListView(generic.ListView):
     model = Product
@@ -16,3 +13,10 @@ class ProductDetailView(generic.DetailView):
 
 class CategoryListView(generic.ListView):
     model = Category
+
+def index(request):
+    random_product = Product.objects.order_by('?')[:10]
+    return render(request,'index.html',{'random_product': random_product})
+
+def catalog(request):
+    return render(request, 'catalog.html')
