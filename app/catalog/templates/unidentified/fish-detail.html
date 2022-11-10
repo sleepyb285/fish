@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>{{ fish.name }}</h1>
+<div class="container">
+  <div class="col"><strong>Name:</strong> {{ fish.name }}</div>
+  <div class="col"><strong>Category:</strong>{{ fish.category }}</div>
+  <div class="col"><strong>Price:</strong> {{ fish.price }}</div>
+  <div class="col"><strong>Provider:</strong> {{ fish.provider }}</div>
+</div>
+
+{% endblock %}

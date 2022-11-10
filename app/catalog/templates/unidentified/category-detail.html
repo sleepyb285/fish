@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Name: {{ category.name }}</h1>
+<div class="container">
+    <h4>Товары из этой категории:</h4>
+    {% if placeholder %}
+        {% for placeholder in placeholder %}
+            <div class="col-2">{{ fish.name }} ({{fish.price}} руб.)</div>
+        {% endfor %}
+    {% else %}
+        <p>None yet... But you can try another category!</p>
+    {% endif %}
+</div>
+{% endblock %}
