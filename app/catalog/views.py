@@ -27,3 +27,6 @@ def CategoryDetailView (request,slug):
     except Category.DoesNotExist:
         raise Http404()
     return render (request,'category_detail.html', {'cat':cat, 'fishies':fishies})
+
+def feedback(request):
+    return render(request, 'feedback.html')

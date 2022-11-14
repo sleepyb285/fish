@@ -70,6 +70,7 @@
         {% if fishies %}
             {% for fish in fishies %}
                 <div class="col-3">
+                  <div class="inner-container">
                         <div class="card" style="width: 18rem;">
                             {% if fish.image %}
                               <a href="fish/{{ fish.slug }}" >
@@ -86,6 +87,7 @@
                               <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
                             </div>
                           </div>
+                    </div>
                 </div>
             {% endfor %}
         {% else %}

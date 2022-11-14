@@ -7,6 +7,7 @@ urlpatterns = [
     path('fish/<slug:slug>', views.FishDetailView, name = 'fish_detail'),
     path('category/<slug:slug>', views.CategoryDetailView, name = 'category_detail'),
     path('category/fish/<slug:slug>', views.FishDetailView, name = 'fish_detail' ),
+    path('feedback', views.feedback, name = 'feedback' ),
 
 
 
