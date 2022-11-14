@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block breadcrumbs %}
+
+<ul class="breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <a href="/">Home</a>/
+        <a href="{% url 'catalog' %}">Каталог</a>/
+        <a href="/catalog/category/{{ cat.slug }}">{{cat.name}}</a>/
+        {{fish.name}}
+        
+      </div> 
+    </div>
+  </div>
+</ul>
+ 
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="container">
+  <h1>{{ fish.name }}</h1>
+  <div class="col"><strong>Name:</strong> {{ fish.name }}</div>
+  <div class="col"><strong>Category:</strong> {{ fish.category }}</div>
+  <div class="col"><strong>Price:</strong> {{ fish.price }} руб.</div>
+  <div class="col"><strong>Provider:</strong> {{ fish.provider }}</div>
+  {% if fish.image %}
+  <div class="col"><img src="/{{ fish.image }}"></div>
+  {% else %}
+  <div class="col"><img src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
+  {% endif %}
+</div>
+{% endblock %}
