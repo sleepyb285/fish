@@ -2,7 +2,7 @@
 
 {% block breadcrumbs %}
 
-<ul class="breadcrumb">
+<div class="breadcrumb">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -11,16 +11,51 @@
             </div>
         </div>
     </div>
-</ul>
+  </div>
 {% endblock %}
 
 {% block content %}
 {% load imagekit %}
 {% load static %}
+
+
+
 <div class="container">
-  
+  <div class="container"> 
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Что-то по магазину</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p><img class="img-fluid" src="{% static 'logo.png' %}"></p>
+    <p><a href="/">Вернуться на главную</a></p>
+    <p><a href="{% url 'catalog' %}">Каталог</a></p>
+    <p>Категории:</p>
+    <ul>
+    {% if categories %}
+      {% for category in categories %}
+        <li><a href="/catalog/category/{{category.slug}}">{{category.name}}</a></li>
+      {% endfor %}
+    {% endif %}
+    </ul>
+    <p>Поставщики:</p>
+    <ul>
+      {% if providers %}
+        {% for provider in providers %}
+          <li><a href="/catalog/provider/{{provider.slug}}">{{provider.name}}</a></li>
+        {% endfor %}
+      {% endif %}
+      </ul>
+    <p><a href="#">Акции</a></p>
+    <p><a href="{% url 'feedback' %}">Оставить отзыв</a></p>
+
+  </div>
+    </div>
+  </div>
 <div class="section">
-    <h4>Категории</h4>
+    <div class="row">
+    <div class="col-4"><button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">test sidebar</button></div>
         <div class="col-4">
         <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
         <div class="carousel-inner">
@@ -62,11 +97,13 @@
         </button>
       </div>
     </div>
+    <div class="col-4"></div>
+  </div>
   </div>
   
-  <div class="section bg-light">
+  <div class="section">
     <h4>Товары</h4>
-    <div class="row" >
+    <div class="row" style="background-color: lightgoldenrodyellow" >
         {% if fishies %}
             {% for fish in fishies %}
                 <div class="col-3">
@@ -81,10 +118,11 @@
                                 <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
                               </a>
                             {%  endif %}
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: rgb(243, 184, 161)">
                               <h5 class="card-title">{{ fish.name }}</h5>
                               <p class="card-text">Всего за {{ fish.price }} руб.</p>
                               <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                              
                             </div>
                           </div>
                     </div>

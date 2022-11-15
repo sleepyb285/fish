@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Category, Fish
+from .models import Category, Fish, Provider,FilterInfo, Attribute
 from django.http import Http404
 
 # Create your views here.
@@ -10,15 +10,18 @@ def index(request):
 def catalog(request):
     categories = Category.objects.all()
     fishies = Fish.objects.all()
-    return render (request,'catalog.html',{'categories':categories,'fishies':fishies})
+    providers = Provider.objects.all()
+    return render (request,'catalog.html',{'categories':categories,'fishies':fishies, 'providers':providers})
 
 def FishDetailView (request, slug):
     try:
         fish = Fish.objects.get(slug=slug)
-        cat = Category.objects.get(id = fish.category.id)
+
+
+
     except Fish.DoesNotExist:
         raise Http404()   
-    return render (request,'fish_detail.html',{'fish':fish, 'cat':cat})
+    return render (request,'fish_detail.html',{'fish':fish})
 
 def CategoryDetailView (request,slug):
     try:
@@ -30,3 +33,17 @@ def CategoryDetailView (request,slug):
 
 def feedback(request):
     return render(request, 'feedback.html')
+
+def contacts(request):
+    return render(request, 'contacts.html')
+
+def ProviderDetailView(request, slug):
+    try:
+        prov = Provider.objects.get(slug=slug)
+        fishies = Fish.objects.filter(provider = prov.id)
+
+    except Provider.DoesNotExist:
+        raise Http404()
+    return render(request, 'provider_detail.html', {'provider':prov, 'fishies':fishies})
+
+

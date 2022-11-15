@@ -2,6 +2,13 @@
 
 {% block content %}
 {% load static %}
-<img src="{% static 'wink.gif' %}" alt="My image">
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4"><img src="{% static 'wink.gif' %}" alt="My image"></div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
 
 {% endblock %}

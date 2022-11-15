@@ -8,7 +8,7 @@
       <div class="col">
         <a href="/">Home</a>/
         <a href="{% url 'catalog' %}">Каталог</a>/
-        <a href="/catalog/category/{{ cat.slug }}">{{cat.name}}</a>/
+        <a href="/catalog/category/{{ fish.category.slug }}">{{fish.category.name}}</a>/
         {{fish.name}}
         
       </div> 
@@ -24,14 +24,35 @@
 
 <div class="container">
   <h1>{{ fish.name }}</h1>
-  <div class="col"><strong>Name:</strong> {{ fish.name }}</div>
-  <div class="col"><strong>Category:</strong> {{ fish.category }}</div>
-  <div class="col"><strong>Price:</strong> {{ fish.price }} руб.</div>
-  <div class="col"><strong>Provider:</strong> {{ fish.provider }}</div>
+  <div class="col"><strong>Название:</strong> {{ fish.name }}</div>
+  <div class="col"><strong>Категория:</strong><a href="/catalog/category/{{fish.category.slug}}"> {{ fish.category.name }}</a></div>
+  <div class="col"><strong>Цена:</strong> {{ fish.price }} руб.</div>
+  <div class="col"><strong>Поставщик:</strong><a href="/catalog/provider/{{fish.provider.slug}}"> {{ fish.provider.name }}</a></div>
   {% if fish.image %}
   <div class="col"><img src="/{{ fish.image }}"></div>
   {% else %}
   <div class="col"><img src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
   {% endif %}
+  <div class="col"><strong>Атрибуты:</strong>
+    {% for attr in fish.filterinfo_set.all %}
+    <div>{{attr.rel_attribute.name}} {{attr.value}}</div>
+    {%endfor %}
+  </div>
 </div>
+
+
+
+  <div class="container">
+    <form class="row g-3">
+      <div class="col-auto">
+        <label for="inputNumber" class="visually-hidden">Number</label>
+        <input type="text" class="form-control" id="inputNumber" placeholder="Ваш номер телефона">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Получить скидку</button>
+      </div>
+    </form>
+
+  </div>
+
 {% endblock %}

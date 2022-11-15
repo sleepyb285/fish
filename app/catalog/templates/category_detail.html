@@ -19,14 +19,14 @@
 {% load static %}
 
 <div class="container">
-  <h1>Name: {{ cat.name }}</h1>
-
+  <h1>{{ cat.name }}</h1>
+<div class="col-6">
   {% if cat.image %}
-  <div class="col"><img src="/{{ cat.image }}"></div>
+  <div class="col"><img class="img-fluid" src="/{{ cat.image }}"></div>
   {% else %}
-  <div class="col"><img src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
+  <div class="col"><img class="img-fluid" src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
   {% endif %}
-
+</div>
     <h4>Товары из этой категории:</h4>
     <div class="row" >
     {% if fishies %}
@@ -34,18 +34,18 @@
         <div class="col-3">
                 <div class="card" style="width: 18rem;">
                     {% if fish.image %}
-                      <a href="fish/{{ fish.slug }}" >
-                        <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
+                      <a href="/catalog/fish/{{ fish.slug }}" >
+                        <img class="img-fluid" src="/{{fish.image}}" alt="sample text">
                       </a>
                     {% else %}
-                      <a href="fish/{{ fish.slug }}" >
-                        <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
+                      <a href="/catalog/fish/{{ fish.slug }}" >
+                        <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" alt="sample text">
                       </a>
                     {%  endif %}
                     <div class="card-body">
                       <h5 class="card-title">{{ fish.name }}</h5>
                       <p class="card-text">Всего за {{ fish.price }} руб.</p>
-                      <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                      <a href="/catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
                     </div>
                   </div>
                 </div>
