@@ -15,9 +15,9 @@
 </head>
 
 
-<header>
+<header style="margin-bottom:3.5rem;">
     {% block header%}
-    <div class="container-fluid", style="background-color: lightblue">
+    <div class="container-fluid", style="background-color: #54C0FF">
         <div class="container">
             <div class="row">
                 <div class="col-1"><a href="/"><img class="img-fluid" src="{% static 'logo.png' %}"></a></div>
@@ -58,9 +58,9 @@
         {% endif %}
         {% endblock %}
 
-    <footer>
+    <footer style="margin-top:3.5rem;">
         {% block footer %}
-        <div class="container-fluid", style="background-color: lightblue">
+        <div class="container-fluid", style="background-color: #54C0FF">
             <div class="container">
                 <div class="row">
                     <div class="col"><a href="/">На главную</a></div>
@@ -97,7 +97,7 @@
     text-decoration: none;
         }
         .to-top:hover{
-            background: lightblue;
+            background: #54C0FF;
         }
 
         .to-top:hover > a{

@@ -7,7 +7,9 @@ class Category(models.Model):
     name = models.CharField(max_length=255, help_text = "Название категории")
     slug = models.SlugField(null=False, unique=True)
     image = models.ImageField(upload_to = 'uploads/category/', null = True, blank = True,)
-
+    parent = models.ForeignKey('self', related_name='children', on_delete=models.SET_NULL, blank=True, null=True)
+    CreateDate = models.DateField(null=True)
+    UpdateDate = models.DateField(null=True)
     def __str__(self):
         return self.name
 
@@ -17,13 +19,16 @@ class Category(models.Model):
 class Provider(models.Model):
     name = models.CharField(max_length=255, help_text="Название поставщика")
     slug = models.SlugField(null=False, unique=True)
+    CreateDate = models.DateField(null=True)
+    UpdateDate = models.DateField(null=True)
 
     def __str__(self):
         return self.name
 
 class Attribute(models.Model):
     name = models.CharField(max_length=255, help_text="Название атрибута")
-    
+    CreateDate = models.DateField(null=True)
+    UpdateDate = models.DateField(null=True)
     def __str__(self):
         return self.name
 
@@ -37,6 +42,8 @@ class Fish(models.Model):
     slug = models.SlugField(null=False, unique=True)
     image = models.ImageField(upload_to = 'uploads/%Y/%m/%d/', null = True, blank = True,)
     attributes = models.ManyToManyField(Attribute, through='FilterInfo', related_name='attributes')
+    CreateDate = models.DateField(null=True)
+    UpdateDate = models.DateField(null=True)
 
     def __str__(self):
         return self.name
@@ -54,3 +61,11 @@ class FilterInfo(models.Model):
     show = models.BooleanField(default=0)
     def __str__(self):
         return self.value
+
+
+class Feedback(models.Model):
+    fish = models.ForeignKey(Fish, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, help_text='Введите ваше имя')
+    body = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to = 'uploads/comms/%Y/%m/%d/', null = True, blank = True)

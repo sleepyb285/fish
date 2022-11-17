@@ -6,9 +6,6 @@ urlpatterns = [
     path('', views.catalog, name='catalog'),
     path('fish/<slug:slug>', views.FishDetailView, name = 'fish_detail'),
     path('<slug:slug>', views.CategoryDetailView, name = 'category_detail'),
-    path('feedback', views.feedback, name = 'feedback' ),
-    path('contacts', views.contacts, name = 'contacts' ),
-    path('provider/<slug:slug>', views.ProviderDetailView, name = 'provider_detail' ),
 
 
 

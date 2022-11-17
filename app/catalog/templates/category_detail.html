@@ -7,6 +7,9 @@
     <div class="row">
       <div class="col"><a href="/">Home</a>/
         <a href="{% url 'catalog' %}">Каталог</a>/
+        {% if cat.parent %}
+          <a href="/catalog/{{cat.parent.slug}}">{{cat.parent.name}}</a>/
+        {% endif %}
         {{cat.name}}
       </div> 
     </div>

@@ -3,11 +3,40 @@
 {% block content %}
 
 {% load static %}
-{% load imagekit %}
-<div class="container">
-    <div class="col-12">
-        <img class="img-fluid" src="{% static 'tropfish.jpg' %}" alt="My image">
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            {% if random_fish %}
+                {% for fish in random_fish %}
+                    <div class="col-3">
+                    <div class="inner-container">
+                            <div class="card" style="width: 18rem;">
+                                {% if fish.image %}
+                                <a href="catalog/fish/{{ fish.slug }}" >
+                                    <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
+                                </a>
+                                {% else %}
+                                <a href="catalog/fish/{{ fish.slug }}" >
+                                    <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
+                                </a>
+                                {%  endif %}
+                                <div class="card-body" style="background-color: #EB9D36">
+                                <h5 class="card-title">{{ fish.name }}</h5>
+                                <p class="card-text">Всего за {{ fish.price }} руб.</p>
+                                <a href="catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>There are no fish in the store. Eat meat</p>
+            {% endif %}
+        </div>
     </div>
-</div>
+  </div>
+
 
 {% endblock %}

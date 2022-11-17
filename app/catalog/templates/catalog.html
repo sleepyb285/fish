@@ -2,7 +2,7 @@
 
 {% block breadcrumbs %}
 
-<div class="breadcrumb">
+<div class="breadcrumb" style="background-color: #37AAEB">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -20,8 +20,7 @@
 
 
 
-<div class="container">
-  <div class="container"> 
+
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Что-то по магазину</h5>
@@ -35,7 +34,7 @@
     <ul>
     {% if categories %}
       {% for category in categories %}
-        <li><a href="/catalog/category/{{category.slug}}">{{category.name}}</a></li>
+        <li><a href="/catalog/{{category.slug}}">{{category.name}}</a></li>
       {% endfor %}
     {% endif %}
     </ul>
@@ -43,97 +42,101 @@
     <ul>
       {% if providers %}
         {% for provider in providers %}
-          <li><a href="/catalog/provider/{{provider.slug}}">{{provider.name}}</a></li>
+          <li><a href="/provider/{{provider.slug}}">{{provider.name}}</a></li>
         {% endfor %}
       {% endif %}
       </ul>
     <p><a href="#">Акции</a></p>
     <p><a href="{% url 'feedback' %}">Оставить отзыв</a></p>
-
+    
   </div>
     </div>
-  </div>
+
 <div class="section">
-    <div class="row">
-    <div class="col-4"><button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">test sidebar</button></div>
-        <div class="col-4">
-        <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{% static 'fish_placeholder.png' %}" class="d-block w-100" alt="...">
-            <div class="carousel-caption-color $black" >
-              <h5>placeholder</h5>
-              <p>Не забудь подумать, как сделать первый слайд</p>
+  <div class="container">
+      <div class="row">
+      <div class="col-4"><button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">test sidebar</button></div>
+          <div class="col-4">
+          <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{% static 'fish_placeholder.png' %}" class="d-block w-100" alt="...">
+              <div class="carousel-caption-color $black" >
+                <h5>placeholder</h5>
+                <p>Не забудь подумать, как сделать первый слайд</p>
+              </div>
             </div>
-          </div>
-          {% if categories %}
-          {% for category in categories %}
-          <div class="carousel-item">
+            {% if categories %}
+            {% for category in categories %}
+            <div class="carousel-item">
 
-            {% if category.image %}
-              <a href="/catalog/category/{{category.slug}}">
-                <img class="img-fluid" src="/{{category.image}}" class="d-block w-100" alt="sample text">
-              </a>
-            {% else %}
-              <a href="/catalog/category/{{category.slug}}">
-                <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="d-block w-100" alt="sample text">
-              </a>
-            {%  endif %}
-            <div class="carousel-caption-color $black">
-              <h5>{{ category.name }}</h5>
-              <p><a href="/catalog/category/{{category.slug}}">Посмотреть в каталоге</a></p>
+              {% if category.image %}
+                <a href="/catalog/category/{{category.slug}}">
+                  <img class="img-fluid" src="/{{category.image}}" class="d-block w-100" alt="sample text">
+                </a>
+              {% else %}
+                <a href="/catalog/category/{{category.slug}}">
+                  <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="d-block w-100" alt="sample text">
+                </a>
+              {%  endif %}
+              <div class="carousel-caption-color $black">
+                <h5>{{ category.name }}</h5>
+                <p><a href="/catalog/category/{{category.slug}}">Посмотреть в каталоге</a></p>
+              </div>
             </div>
+            {% endfor %}
+            {% endif %}
           </div>
-          {% endfor %}
-          {% endif %}
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
+      <div class="col-4"></div>
     </div>
-    <div class="col-4"></div>
   </div>
-  </div>
+</div>
   
   <div class="section">
-    <h4>Товары</h4>
-    <div class="row" style="background-color: lightgoldenrodyellow" >
-        {% if fishies %}
-            {% for fish in fishies %}
-                <div class="col-3">
-                  <div class="inner-container">
-                        <div class="card" style="width: 18rem;">
-                            {% if fish.image %}
-                              <a href="fish/{{ fish.slug }}" >
-                                <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
-                              </a>
-                            {% else %}
-                              <a href="fish/{{ fish.slug }}" >
-                                <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
-                              </a>
-                            {%  endif %}
-                            <div class="card-body" style="background-color: rgb(243, 184, 161)">
-                              <h5 class="card-title">{{ fish.name }}</h5>
-                              <p class="card-text">Всего за {{ fish.price }} руб.</p>
-                              <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
-                              
+    <div class="container">
+      <h4>Товары</h4>
+      <div class="row" >
+          {% if fishies %}
+              {% for fish in fishies %}
+                  <div class="col-3">
+                    <div class="inner-container">
+                          <div class="card">
+                              {% if fish.image %}
+                                <a href="fish/{{ fish.slug }}" >
+                                  <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
+                                </a>
+                              {% else %}
+                                <a href="fish/{{ fish.slug }}" >
+                                  <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
+                                </a>
+                              {%  endif %}
+                              <div class="card-body" style="background-color: #EB9D36">
+                                <h5 class="card-title">{{ fish.name }}</h5>
+                                <p class="card-text">Всего за {{ fish.price }} руб.</p>
+                                <a href="catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                                
+                              </div>
                             </div>
-                          </div>
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>There are no fish in the store. Eat meat</p>
-        {% endif %}
+                      </div>
+                  </div>
+              {% endfor %}
+          {% else %}
+              <p>There are no fish in the store. Eat meat</p>
+          {% endif %}
+      </div>
     </div>
   </div>
-  </div>
+
 
 
 {% endblock %}

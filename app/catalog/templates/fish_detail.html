@@ -8,7 +8,11 @@
       <div class="col">
         <a href="/">Home</a>/
         <a href="{% url 'catalog' %}">Каталог</a>/
-        <a href="/catalog/category/{{ fish.category.slug }}">{{fish.category.name}}</a>/
+        {% if fish.category.parent %}
+          <a href="/catalog/{{fish.category.parent.slug}}">{{fish.category.parent.name}}</a>/
+        {% endif %}
+        <a href="/catalog/{{ fish.category.slug }}">{{fish.category.name}}</a>/
+
         {{fish.name}}
         
       </div> 
@@ -25,9 +29,9 @@
 <div class="container">
   <h1>{{ fish.name }}</h1>
   <div class="col"><strong>Название:</strong> {{ fish.name }}</div>
-  <div class="col"><strong>Категория:</strong><a href="/catalog/category/{{fish.category.slug}}"> {{ fish.category.name }}</a></div>
+  <div class="col"><strong>Категория:</strong><a href="/catalog/{{fish.category.slug}}"> {{ fish.category.name }}</a></div>
   <div class="col"><strong>Цена:</strong> {{ fish.price }} руб.</div>
-  <div class="col"><strong>Поставщик:</strong><a href="/catalog/provider/{{fish.provider.slug}}"> {{ fish.provider.name }}</a></div>
+  <div class="col"><strong>Поставщик:</strong><a href="/provider/{{fish.provider.slug}}"> {{ fish.provider.name }}</a></div>
   {% if fish.image %}
   <div class="col"><img src="/{{ fish.image }}"></div>
   {% else %}
@@ -35,8 +39,21 @@
   {% endif %}
   <div class="col"><strong>Атрибуты:</strong>
     {% for attr in fish.filterinfo_set.all %}
-    <div>{{attr.rel_attribute.name}} {{attr.value}}</div>
+    <div>{{attr.rel_attribute.name}} : {{attr.value}}</div>
     {%endfor %}
+  </div>
+  {% if shitfan %}
+  <div class="col"><strong>Отзывы:</strong>
+    {% for shit in shitfan %}
+    <div class="col"><strong>{{shit.name}}</strong> {{shit.date}}
+      <div class="col">{{shit.body}}
+        {% if shit.image %}
+        <img src="/{{shit.image}}" alt="sample text"></div>
+        {% endif %}</div>
+      
+    </div>
+    {%endfor%}
+  {% endif %}
   </div>
 </div>
 

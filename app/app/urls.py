@@ -16,14 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
-from catalog.views import index
+from catalog.views import index,feedback,contacts, ProviderDetailView
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='home'),
-    path('catalog/',include('catalog.urls'))
+    path('', index, name = 'home'),
+    path('feedback/', feedback, name = 'feedback' ),
+    path('contacts/', contacts, name = 'contacts' ),
+    path('catalog/',include('catalog.urls')),
+    path('provider/<slug:slug>', ProviderDetailView, name = 'provider_detail')
 ]   
 
 if settings.DEBUG:
