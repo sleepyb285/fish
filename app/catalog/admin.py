@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Fish,Provider,Category,Attribute,FilterInfo, Feedback
+from .models import Fish,Provider,Category,Attribute,FilterInfo, Feedback, Location
 # Register your models here.
 
 class FilterInfoInLine(admin.TabularInline):
@@ -24,6 +24,7 @@ admin.site.register(Provider, ProviderAdmin)
 admin.site.register(Fish, FishAdmin)
 admin.site.register(Attribute,AttributeAdmin)
 admin.site.register(Feedback)
+admin.site.register(Location)
 
 
 

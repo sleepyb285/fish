@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Category, Fish, Provider,FilterInfo, Attribute, Feedback
-from django.http import Http404
+from .models import Category, Fish, Provider,FilterInfo, Attribute, Feedback, Location
+from django.http import Http404,HttpResponseRedirect
+from .forms import CallbackForm
 
 # Create your views here.
 def index(request):
@@ -36,7 +37,8 @@ def feedback(request):
     return render(request, 'feedback.html')
 
 def contacts(request):
-    return render(request, 'contacts.html')
+    locations = Location.objects.all()
+    return render(request, 'contacts.html', {'locations':locations})
 
 def ProviderDetailView(request, slug):
     try:
@@ -47,4 +49,19 @@ def ProviderDetailView(request, slug):
         raise Http404()
     return render(request, 'provider_detail.html', {'provider':prov, 'fishies':fishies})
 
+def LocationDetailView(request,id):
 
+    if request.method == 'POST':
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/nice/')
+    else:
+        form = CallbackForm()
+    try:
+        location = Location.objects.get(id = id)
+    except Location.DoesNotExist:
+        raise Http404()
+    return render(request, 'location_detail.html', {'location':location, 'form':form})
+
+def nice(request):
+    return render(request, 'nice.html')

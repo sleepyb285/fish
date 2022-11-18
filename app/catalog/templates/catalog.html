@@ -57,7 +57,7 @@
       <div class="row">
       <div class="col-4"><button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">test sidebar</button></div>
           <div class="col-4">
-          <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
+          <div id="carousel-category" class="carousel carousel-dark slide" data-bs-ride="false" data-bs-touch = "true">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="{% static 'fish_placeholder.png' %}" class="d-block w-100" alt="...">
@@ -87,11 +87,11 @@
             {% endfor %}
             {% endif %}
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel-category" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel-category" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>

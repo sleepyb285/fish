@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img class="img-fluid" src = "/{{location.photo}}" alt = "location photo">
+        </div>
+        <div class="col-4">
+            <div>
+                <h5>{{location.city}}</h5>
+                <h3>{{location.title}}</h3>
+            </div>
+            <div>
+                <p>{{location.adress}}</p>
+            </div>
+            <div class="contacts">
+                <div>{{location.number}}</div>
+                <div>{{location.email}}</div>
+            </div>
+        </div>
+    </div>
+      
+    <hr>
+
+    </div>
+    <div class="container">
+        <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4" style="border: 1px solid #172a7e;">
+            <h3 style="text-align: center">Задать вопрос</h3>
+            <form action="callback-request" method="post">
+                {% csrf_token %}
+                    {% for field in form.visible_fields %}
+                    <div class="div">
+                        <div class="col">
+                        <div class="col">{{ field.label_tag }}</div>
+                        {% if field.errors %}
+                        <div class="col">
+                            {{ field.errors }}
+                        </div>
+                        {% endif %}
+                        <div class="col">
+                        {{ field }}
+                        </div>
+                        </div>
+                  </div>
+
+              {% endfor %}
+              <div class="col" style="opacity: 50%">*Поля, обязательные для заполнения</div>
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
+        <div class="col-4"></div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
-from catalog.views import index,feedback,contacts, ProviderDetailView
+from catalog.views import index,feedback,contacts, ProviderDetailView, LocationDetailView,nice
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,7 +26,9 @@ urlpatterns = [
     path('feedback/', feedback, name = 'feedback' ),
     path('contacts/', contacts, name = 'contacts' ),
     path('catalog/',include('catalog.urls')),
-    path('provider/<slug:slug>', ProviderDetailView, name = 'provider_detail')
+    path('provider/<slug:slug>', ProviderDetailView, name = 'provider_detail'),
+    path('contacts/<id>', LocationDetailView, name = 'location_detail'),
+    path('nice/', nice, name = 'nice'),
 ]   
 
 if settings.DEBUG:

@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from PIL import Image
+from phone_field import PhoneField
+import datetime
 
 # Create your models here.
 class Category(models.Model):
@@ -8,7 +9,7 @@ class Category(models.Model):
     slug = models.SlugField(null=False, unique=True)
     image = models.ImageField(upload_to = 'uploads/category/', null = True, blank = True,)
     parent = models.ForeignKey('self', related_name='children', on_delete=models.SET_NULL, blank=True, null=True)
-    CreateDate = models.DateField(null=True)
+    CreateDate = models.DateField(default=datetime.date.today)
     UpdateDate = models.DateField(null=True)
     def __str__(self):
         return self.name
@@ -27,7 +28,7 @@ class Provider(models.Model):
 
 class Attribute(models.Model):
     name = models.CharField(max_length=255, help_text="Название атрибута")
-    CreateDate = models.DateField(null=True)
+    CreateDate = models.DateField(default=datetime.date.today)
     UpdateDate = models.DateField(null=True)
     def __str__(self):
         return self.name
@@ -42,7 +43,7 @@ class Fish(models.Model):
     slug = models.SlugField(null=False, unique=True)
     image = models.ImageField(upload_to = 'uploads/%Y/%m/%d/', null = True, blank = True,)
     attributes = models.ManyToManyField(Attribute, through='FilterInfo', related_name='attributes')
-    CreateDate = models.DateField(null=True)
+    CreateDate = models.DateField(default=datetime.date.today)
     UpdateDate = models.DateField(null=True)
 
     def __str__(self):
@@ -69,3 +70,25 @@ class Feedback(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to = 'uploads/comms/%Y/%m/%d/', null = True, blank = True)
+
+class Location(models.Model):
+    title = models.CharField(max_length=255, help_text='Название локации')
+    adress = models.CharField(max_length=255, help_text='Адрес')
+    number = models.CharField(max_length=255, help_text='Номер телефона')
+    email = models.CharField(max_length=255, help_text='Адрес электронной почты')
+    photo = models.ImageField(upload_to = 'uploads/locations/', null = True, blank = True)
+    city = models.CharField(max_length=255, help_text='Населенный пункт', null = True)
+    CreateDate = models.DateField(default=datetime.date.today)
+    UpdateDate = models.DateField(null=True)
+
+    class Meta:
+        ordering = ['city']
+
+class Callback_request(models.Model):
+    name = models.CharField(max_length=255, help_text='Указанное имя')
+    phone = PhoneField(help_text = 'Ваш номер телефона')
+    email = models.CharField(max_length=255, help_text='Адрес электронной почты', null= True, blank= True)
+    text = models.TextField()
+    location = models.ForeignKey(Location, on_delete=models.DO_NOTHING, null=True, blank=True)
+    CreateDate = models.DateField(default=datetime.date.today)
+    #По идее, обновляться не должны, так что обновление не ставлю
