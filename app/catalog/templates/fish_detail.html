@@ -45,31 +45,54 @@
   {% if shitfan %}
   <div class="col"><strong>Отзывы:</strong>
     {% for shit in shitfan %}
-    <div class="col"><strong>{{shit.name}}</strong> {{shit.date}}
-      <div class="col">{{shit.body}}
-        {% if shit.image %}
-        <img src="/{{shit.image}}" alt="sample text"></div>
-        {% endif %}</div>
-      
-    </div>
+      <div class="col"><strong>{{shit.name}}</strong> {{shit.date}}
+        <div class="col">{{shit.body}}
+          {% if shit.image %}
+          <img src="/{{shit.image}}" alt="sample text">
+          {% endif %}
+        </div>
+      </div>
+    <br>
     {%endfor%}
-  {% endif %}
   </div>
-</div>
+  {% endif %}
+  
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Feedback">
+    Оставить отзыв
+  </button>
 
-
-
-  <div class="container">
-    <form class="row g-3">
-      <div class="col-auto">
-        <label for="inputNumber" class="visually-hidden">Number</label>
-        <input type="text" class="form-control" id="inputNumber" placeholder="Ваш номер телефона">
+  <div class="modal fade" id="Feedback" tabindex="-1" aria-labelledby="FeedbackLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="FeedbackLabel">Оставить отзыв</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post">
+            {% csrf_token %}
+                {% for field in form.visible_fields %}
+                <div class="div">
+                  <div class="col">
+                  <div class="col">{{ field.label_tag }}</div>
+                  {% if field.errors %}
+                  <div class="col">
+                      {{ field.errors }}
+                  </div>
+                  {% endif %}
+                  <div class="col">
+                  {{ field }}
+                  </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="col" style="opacity: 50%">*Поля, обязательные для заполнения</div>
+                <div class="col" style="opacity: 30%">Изображения проходят предварительную модерацию</div>
+                <input type="submit" value="Отправить">
+          </form>
+        </div>
       </div>
-      <div class="col-auto">
-        <button type="button" class="btn btn-primary mb-3">Получить скидку</button>
-      </div>
-    </form>
-
+    </div>
   </div>
 
 {% endblock %}

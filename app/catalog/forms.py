@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Callback_request
+from .models import Callback_request, Feedback, Feedback_generic
 
 class CallbackForm(ModelForm):
     class Meta:
@@ -17,3 +17,27 @@ class CallbackForm(ModelForm):
     # phone = PhoneField()
     # body = forms.CharField(label = 'Вопрос',widget=forms.Textarea)
 
+class FeedbackForm(ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ['fish','name','body','image']
+        labels = {
+            'fish': ('Рыба'),
+            'name': ('Имя*'),  
+            'body': ('Напишите отзыв'),
+            'image' : ('Прикрепить изображение')
+        }
+        # widgets = {
+        #     'fish': forms.HiddenInput()
+        # }
+        #При добавлении форма не получает ключевое поле и не сохраняет ничего в БД
+
+class Feedback_newForm(ModelForm):
+    class Meta:
+        model = Feedback_generic
+        fields = ['name','body','image']
+        labels = {
+            'name': ('Имя*'),  
+            'body': ('Напишите отзыв'),
+            'image' : ('Прикрепить изображение')
+        }

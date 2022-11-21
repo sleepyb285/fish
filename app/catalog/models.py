@@ -68,7 +68,7 @@ class Feedback(models.Model):
     fish = models.ForeignKey(Fish, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, help_text='Введите ваше имя')
     body = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=datetime.date.today)
     image = models.ImageField(upload_to = 'uploads/comms/%Y/%m/%d/', null = True, blank = True)
 
 class Location(models.Model):
@@ -92,3 +92,11 @@ class Callback_request(models.Model):
     location = models.ForeignKey(Location, on_delete=models.DO_NOTHING, null=True, blank=True)
     CreateDate = models.DateField(default=datetime.date.today)
     #По идее, обновляться не должны, так что обновление не ставлю
+
+
+
+class Feedback_generic(models.Model):
+    name = models.CharField(max_length=100, help_text='Введите ваше имя')
+    body = models.TextField()
+    date = models.DateTimeField(default=datetime.date.today)
+    image = models.ImageField(upload_to = 'uploads/comms/%Y/%m/%d/', null = True, blank = True)

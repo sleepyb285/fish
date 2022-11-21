@@ -5,9 +5,28 @@
 <div class="container">
     <div class="row">
         <div class="col-4"></div>
-        <div class="col-4"><img src="{% static 'wink.gif' %}" alt="My image"></div>
+        <div class="col-4"><a class="btn btn-primary" href="{% url 'feedback_new' %}" role="button">Оставить отзыв о компании</a>
+          
+            
+        </div>
         <div class="col-4"></div>
     </div>
+    {% if shitfan %}
+<div class="col"><strong>Отзывы:</strong>
+  {% for shit in shitfan %}
+  <div class="row">
+    <div class="col"><strong>{{shit.name}}</strong> {{shit.date}}
+      <div class="col">{{shit.body}}
+        {% if shit.image %}
+        <img class="img-fluid" src="/{{shit.image}}" alt="sample text">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+  {%endfor%}
+{% endif %}
 </div>
 
 
