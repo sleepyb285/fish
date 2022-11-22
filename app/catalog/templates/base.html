@@ -24,7 +24,7 @@
                 <div class="col"><a href="{% url 'catalog' %}">Каталог</a></div>
                 <div class="col"><a href="{% url 'feedback' %}">Отзывы</a></div>
                 <div class="col"><a href="{% url 'contacts' %}">Контакты</a></div>
-                <div class="col"><a href="#">О компании</a></div>
+                <div class="col"><a href="{% url 'about' %}">О компании</a></div>
                 <div class="col"><a href="#">Зоны обслуживания</a></div>
             </div>
         </div>
@@ -40,23 +40,7 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     {% block content %}{% endblock %}
-    {% block pagination %}
-        {% if is_paginated %}
-            <div class="pagination">
-                <span class="page-links">
-                    {% if page_obj.has_previous %}
-                        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-                    <span class="page-current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-                    {% if page_obj.has_next %}
-                        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                    {% endif %}
-                </span>
-            </div>
-        {% endif %}
-        {% endblock %}
+    {% block pagination %}{% endblock %}
 
     <footer style="margin-top:3.5rem;">
         {% block footer %}

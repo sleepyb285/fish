@@ -5,29 +5,67 @@
 <div class="container">
     <div class="row">
         <div class="col-4"></div>
-        <div class="col-4"><a class="btn btn-primary" href="{% url 'feedback_new' %}" role="button">Оставить отзыв о компании</a>
-          
-            
+        <div class="col-4" style="text-align: center;"><a class="btn btn-primary" href="{% url 'feedback_new' %}" role="button">Оставить отзыв о компании</a>
         </div>
         <div class="col-4"></div>
     </div>
-    {% if shitfan %}
-<div class="col"><strong>Отзывы:</strong>
-  {% for shit in shitfan %}
-  <div class="row">
-    <div class="col"><strong>{{shit.name}}</strong> {{shit.date}}
-      <div class="col">{{shit.body}}
-        {% if shit.image %}
-        <img class="img-fluid" src="/{{shit.image}}" alt="sample text">
-        {% endif %}
-      </div>
-    </div>
-  </div>
 </div>
 <br>
-  {%endfor%}
-{% endif %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="col" style="text-align: center;">
+        <strong>Ваши отзывы</strong>
+      </div>
+      <br>
+      {% if shitfan %}
+
+        {% for shit in shitfan %}
+        <div class="row">
+          <div class="col-3">
+            <strong>{{shit.name}}</strong>
+            <br>
+            {{shit.date}}
+          </div>
+          <div class="col-6">{{shit.body}}</div>
+          <div class="col-3">
+            {% if shit.image %}
+              <img class="img-fluid" src="/{{shit.image}}" alt="sample text">
+            {% endif %}
+          </div>
+        </div>
+        <hr>
+        {% endfor %}
+
+      {% endif %}
+
+    </div>
+    <div class="col-2"></div>
+  </div>
 </div>
 
+{% endblock %}
 
+{% block pagination %}
+
+
+<div class="pagination">
+  <span class="step-links">
+      {% if shitfan.has_previous %}
+          <a href="?page=1">&laquo; В начало</a>
+          <a href="?page={{ shitfan.previous_page_number }}">Назад</a>
+      {% endif %}
+
+      <span class="current">
+          Страница {{ shitfan.number }} из {{ shitfan.paginator.num_pages }}.
+      </span>
+
+      {% if shitfan.has_next %}
+          <a href="?page={{ shitfan.next_page_number }}">Дальше</a>
+          <a href="?page={{ shitfan.paginator.num_pages }}">В конец &raquo;</a>
+      {% endif %}
+  </span>
+</div>
 {% endblock %}

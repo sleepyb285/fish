@@ -135,7 +135,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Основной url для управления медиафайлами
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
-# Путь хранения картинок
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+# # Путь хранения картинок
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')

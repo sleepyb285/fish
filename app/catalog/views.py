@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from .models import Category, Fish, Provider, Feedback, Location, Callback_request, Feedback_generic
 from django.http import Http404,HttpResponseRedirect
 from .forms import CallbackForm, FeedbackForm, Feedback_newForm
@@ -11,14 +12,19 @@ def index(request):
 
 
 def catalog(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(parent = None)
+    subcategories = Category.objects.filter(children = None)
     fishies = Fish.objects.all()
+    paginator = Paginator(fishies, 12)
     providers = Provider.objects.all()
-    return render (request,'catalog.html',{'categories':categories,'fishies':fishies, 'providers':providers})
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render (request,'catalog.html',{'categories':categories,'fishies':page_obj, 'providers':providers, 'subcategories':subcategories})
+
 
 def FishDetailView (request, slug):
     if request.method == 'POST':
-        form = FeedbackForm(request.POST)
+        form = FeedbackForm(request.POST, request.FILES)
         
         if form.is_valid():
             a = Feedback(
@@ -35,20 +41,46 @@ def FishDetailView (request, slug):
     try:
         fish = Fish.objects.get(slug=slug)
         shitfan = Feedback.objects.filter(fish = fish.id)
+        paginator = Paginator(shitfan,16)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Fish.DoesNotExist:
             raise Http404()   
 
-    return render (request,'fish_detail.html',{'fish':fish, 'shitfan':shitfan, 'form':form})
+    return render (request,'fish_detail.html',{'fish':fish, 'shitfan':page_obj, 'form':form})
+
+res = []
+def recur(id):
+    Category.objects.filter(parent=id) is not None
+    pass
 
 def CategoryDetailView (request,slug):
     try:
         cat = Category.objects.get(slug=slug)
-        # children = Category.objects.filter(parent = cat.id)
-        fishies = Fish.objects.filter(category = cat.id or cat.children.id)
-        
+        children = Category.objects.filter(parent = cat.id)
+        fishies = Fish.objects.filter(category = cat.id)
+        print(fishies,children)
+
+        recur(cat.id)
+
+        # for child in children:
+        #     finished = False
+        #     last = None
+        #     while not finished:
+
+            #fishies |= Fish.objects.filter(category = child.id)
+            #print(fishies.query)
+        #print(fishies)
+
+
+
+
+        paginator = Paginator(fishies,16)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Category.DoesNotExist:
         raise Http404()
-    return render (request,'category_detail.html', {'cat':cat, 'fishies':fishies})
+    return render (request,'category_detail.html', {'cat':cat, 'fishies':page_obj})
 
 def contacts(request):
     locations = Location.objects.all()
@@ -58,10 +90,13 @@ def ProviderDetailView(request, slug):
     try:
         prov = Provider.objects.get(slug=slug)
         fishies = Fish.objects.filter(provider = prov.id)
+        paginator = Paginator(fishies,16)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
     except Provider.DoesNotExist:
         raise Http404()
-    return render(request, 'provider_detail.html', {'provider':prov, 'fishies':fishies})
+    return render(request, 'provider_detail.html', {'provider':prov, 'fishies':page_obj})
 
 def LocationDetailView(request,id):
 
@@ -90,15 +125,16 @@ def nice(request):
 
 def feedback(request):
     shitfan = Feedback_generic.objects.all()
-    return render(request, 'feedback.html', {'shitfan':shitfan})
+    paginator = Paginator(shitfan,16)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'feedback.html', {'shitfan':page_obj})
 
 
 def feedback_new(request):
 
     if request.method == 'POST':
-        form = Feedback_newForm(request.POST)
-        print(request)
-        print(form.data)
+        form = Feedback_newForm(request.POST,request.FILES)
         if form.is_valid():
             upload = request.FILES
             a = Feedback_generic(
@@ -117,3 +153,6 @@ def feedback_new(request):
 
     return render(request, 'new.html', {'form':form})
 
+def about(request):
+    
+    return render(request, 'about.html')

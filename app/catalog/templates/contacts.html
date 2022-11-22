@@ -9,7 +9,7 @@
 
         <div class="row">
             <div class="col-6">
-                <img src = "#" alt = "location photo">
+                <img class="img-fluid" src = "{% static 'skinkea5_1.jpg' %}" alt = "location photo">
             </div>
             <div class="col-6">
                 <div>
@@ -59,7 +59,7 @@
                 <div class="col">
                     <a href="{{location.id}}"><button type="button" class="btn btn-success">Подробнее</button></a>
                 </div>
-                <div class="col"><button type="button" class="btn btn-warning">Посмотреть на карте</button></div>
+                <div class="col"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#fuck-you" >Посмотреть на карте</button></div>
             </div>
         </div>
         <hr>
@@ -67,4 +67,19 @@
         {% endif %}
     </div>
 </div>
+<div class="modal fade" id="fuck-you" tabindex="-1" aria-labelledby="fuck-youLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fuck-youLabel">Пошел ты</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Нет карт, страдай
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+
