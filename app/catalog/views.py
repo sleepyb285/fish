@@ -49,32 +49,13 @@ def FishDetailView (request, slug):
 
     return render (request,'fish_detail.html',{'fish':fish, 'shitfan':page_obj, 'form':form})
 
-res = []
-def recur(id):
-    Category.objects.filter(parent=id) is not None
-    pass
-
 def CategoryDetailView (request,slug):
     try:
         cat = Category.objects.get(slug=slug)
         children = Category.objects.filter(parent = cat.id)
         fishies = Fish.objects.filter(category = cat.id)
-        print(fishies,children)
-
-        recur(cat.id)
-
-        # for child in children:
-        #     finished = False
-        #     last = None
-        #     while not finished:
-
-            #fishies |= Fish.objects.filter(category = child.id)
-            #print(fishies.query)
-        #print(fishies)
-
-
-
-
+        for child in children:
+            fishies |= Fish.objects.filter(category = child.id)
         paginator = Paginator(fishies,16)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)

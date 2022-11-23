@@ -12,7 +12,6 @@
     </figcaption>
 </figure>
 <div class="row">
-    <div class="col-1"></div>
     <div class="col-8">
         <video autoplay muted loop >
             <source src="{% static 'video.mp4' %}">
@@ -29,18 +28,18 @@
                     <div class="inner-container">
                             <div class="card" style="width: 18rem;">
                                 {% if fish.image %}
-                                <a href="catalog/fish/{{ fish.slug }}" >
+                                <a href="fish/{{ fish.slug }}" >
                                     <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
                                 </a>
                                 {% else %}
-                                <a href="catalog/fish/{{ fish.slug }}" >
+                                <a href="fish/{{ fish.slug }}" >
                                     <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
                                 </a>
                                 {%  endif %}
-                                <div class="card-body" style="background-color: #EB9D36">
+                                <div class="card-body">
                                 <h5 class="card-title">{{ fish.name }}</h5>
                                 <p class="card-text">Всего за {{ fish.price }} руб.</p>
-                                <a href="catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                                <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
                                 
                                 </div>
                             </div>
