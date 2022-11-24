@@ -20,44 +20,64 @@
 
 {% block content %}
 {% load static %}
-
-<div class="container">
-  <h1>{{ cat.name }}</h1>
-<div class="col-6">
-  {% if cat.image %}
-  <div class="col"><img class="img-fluid" src="/{{ cat.image }}"></div>
-  {% else %}
-  <div class="col"><img class="img-fluid" src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
-  {% endif %}
-</div>
-    <h4>Товары из этой категории:</h4>
-    <div class="row" >
-    {% if fishies %}
-    {% for fish in fishies %}
-        <div class="col-3">
-                <div class="card" style="width: 18rem;">
-                    {% if fish.image %}
-                      <a href="/catalog/fish/{{ fish.slug }}" >
-                        <img class="img-fluid" src="/{{fish.image}}" alt="sample text">
-                      </a>
-                    {% else %}
-                      <a href="/catalog/fish/{{ fish.slug }}" >
-                        <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" alt="sample text">
-                      </a>
-                    {%  endif %}
-                    <div class="card-body">
-                      <h5 class="card-title">{{ fish.name }}</h5>
-                      <p class="card-text">Всего за {{ fish.price }} руб.</p>
-                      <a href="/catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
-    {% else %}
-        <p>None yet... But you can try another category!</p>
+<h1 style="margin-bottom: 2rem; text-align:center">{{ cat.name }}</h1>
+<div class="section">
+  <div class="container">
+  <div class="row">
+    <h3>Подкатегории:</h3>
+    <div class="col-2 category-list" style="margin-left: 1rem;">
+      
+      {% if children %}
+      
+        {% for child in children %}
+      <a href="/catalog/{{child.slug}}">
+        <div class="col">
+          {{child}}
+        </div>
+      </a>
+      {% endfor %}
     {% endif %}
+    </div>
+    <div class="col">
+      <div class="col">
+        {% if cat.image %}
+        <div class="col"><img class="img-fluid" style="padding-left: 10rem;" src="/{{ cat.image }}"></div>
+        {% else %}
+        <div class="col"><img class="img-fluid"  src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
+        {% endif %}
+      </div>
+      <h4 style="text-align: center;">Товары из этой категории:</h4>
+      <div class="row" >
+        {% if fishies %}
+        {% for fish in fishies %}
+            <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        {% if fish.image %}
+                          <a href="/catalog/fish/{{ fish.slug }}" >
+                            <img class="img-fluid" src="/{{fish.image}}" alt="sample text">
+                          </a>
+                        {% else %}
+                          <a href="/catalog/fish/{{ fish.slug }}" >
+                            <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" alt="sample text">
+                          </a>
+                        {%  endif %}
+                        <div class="card-body">
+                          <h5 class="card-title">{{ fish.name }}</h5>
+                          <p class="card-text">Всего за {{ fish.price }} руб.</p>
+                          <a href="/catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+        {% else %}
+            <p>None yet... But you can try another category!</p>
+        {% endif %}
+    </div>
+    </div>
+  </div>
 </div>
 </div>
+
 {% endblock %}
 
 {% block pagination %}

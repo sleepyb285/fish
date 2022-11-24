@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from .models import Category, Fish, Provider, Feedback, Location, Callback_request, Feedback_generic
+from .models import Category, Fish, Provider, Feedback, Location, Callback_request, Feedback_generic, FilterInfo
 from django.http import Http404,HttpResponseRedirect
 from .forms import CallbackForm, FeedbackForm, Feedback_newForm
 from datetime import datetime
@@ -8,18 +8,35 @@ from datetime import datetime
 # Create your views here.
 def index(request):
     random_fish = Fish.objects.order_by('?')[:12]
-    return render (request,'index.html', {'random_fish':random_fish})
+    categories = Category.objects.filter(parent = None)
+    return render (request,'index.html', {'categories':categories,'random_fish':random_fish})
 
 
 def catalog(request):
+    if request.method == 'POST':
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            a = Callback_request(
+                name = form.cleaned_data["name"],
+                phone = form.cleaned_data["phone"],
+                email = form.cleaned_data["email"],
+                text = form.cleaned_data["text"],
+            )
+            a.save()
+            return HttpResponseRedirect('/nice/')
+    else:
+        form = CallbackForm()
     categories = Category.objects.filter(parent = None)
     subcategories = Category.objects.filter(children = None)
     fishies = Fish.objects.all()
+    attributes = FilterInfo.objects.all()
     paginator = Paginator(fishies, 12)
     providers = Provider.objects.all()
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render (request,'catalog.html',{'categories':categories,'fishies':page_obj, 'providers':providers, 'subcategories':subcategories})
+    count = len(fishies)
+    form = CallbackForm
+    return render (request,'catalog.html',{'categories':categories,'fishies':page_obj, 'providers':providers, 'subcategories':subcategories, 'count':count, 'form':form, 'attributes':attributes})
 
 
 def FishDetailView (request, slug):
@@ -41,7 +58,7 @@ def FishDetailView (request, slug):
     try:
         fish = Fish.objects.get(slug=slug)
         shitfan = Feedback.objects.filter(fish = fish.id)
-        paginator = Paginator(shitfan,16)
+        paginator = Paginator(shitfan,12)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
     except Fish.DoesNotExist:
@@ -56,12 +73,12 @@ def CategoryDetailView (request,slug):
         fishies = Fish.objects.filter(category = cat.id)
         for child in children:
             fishies |= Fish.objects.filter(category = child.id)
-        paginator = Paginator(fishies,16)
+        paginator = Paginator(fishies,12)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
     except Category.DoesNotExist:
         raise Http404()
-    return render (request,'category_detail.html', {'cat':cat, 'fishies':page_obj})
+    return render (request,'category_detail.html', {'cat':cat, 'fishies':page_obj, 'children':children})
 
 def contacts(request):
     locations = Location.objects.all()

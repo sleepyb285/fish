@@ -1,26 +1,114 @@
-body {
+/* Цветовая схема:
+#5680e9    основные кнопки
+#84ceeb   хедер
+#5ab9ea
+#c1c8e4
+#8860d0    кнопки перезвона */
+
+/* цвета шапки и подвала */
+header, footer {
+    background: #84ceeb;
+}
+
+/* Ссылки в шапке и подвале */
+header a, footer a{
+    text-decoration: none;
     color: black;
 }
-
-
+/* Заливка бэграунда */
+body {
+    background-color: aliceblue;
+}
+/* Ссылки в хлебокрошках */
+.breadcrumb {
+    text-decoration: none;
+}
+/* Автовыравнивание */
 div {
-    display: block;
     margin: auto;
+}
+/* Карточки товаров */
+.card {
+    background-color: transparent;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+/* Выравнивание размера картинок товаров (костыль?) */
+.card .img-fluid {
+    max-width: 203px;
+    max-height: 136px;
+}
+/* Категории в карточках товаров */
+.card-category {
+    opacity: 50%;
+
+}
+/* Атрибуты */
+.attributes {
+    opacity: 50%;
+}
+/* Кнопки категорий */
+.category-list .col {
+    margin-bottom: 0.5rem;
+    border: lightgray solid 1px;
+    padding: 0.5rem;
+    transition: 0.3s;
+}
+/* Ссылки внутри кнопок категорий */
+.category-list a {
+    color: inherit;
+    text-decoration:none; 
+    font-size: larger;
     
 }
-
-
+/* Эффекты для кнопок категорий */
+.category-list :hover {
+    background: #5ab9ea;
+}
+/* Блок формы коллбэка */
 #call-req {
     border: 1px solid #172a7e;
 }
-#call-req .input-container {
+/* Цвет текста в формах */
+.input-container {
     color: rgb(78, 12, 78);
 }
+/* Кнопка Получить КП */
+.btn-commers {
+    background-color: #8860d0;
+    color: white
+}
+/* Обычные кнопки */
+.btn-primary {
+    background-color: #5690E9;
+}
+/* TODO пагинация */
+.pagination {
+    color: black;
+}
 
-/* не забудь удалить */
-@keyframes bouncing{
-    0%  { bottom: 0; box-shadow: 0 0 5px rgba(0,0,0,0.5); }
-    100% { bottom: 50px; box-shadow: 0 50px 50px rgba(0,0,0,0.1); }
-  }
+/* Кнопка наверх by De'knees */
+.to-top{
+    position: fixed;
+    right: 10px;
+    background: #fff;
+    color: #000;
+    bottom: 7rem;
+    border-radius: 0.25rem;
+    border: 1px solid #dbdbdb;
+    transition: 0.3s;
+}
+.to-top a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    text-decoration: none;
+}
+.to-top:hover{
+    background: #84CEEB;
+}
+.to-top:hover > a{
     
-p { animation: bouncing 4s linear infinite; }
+    color: #FFF;
+}

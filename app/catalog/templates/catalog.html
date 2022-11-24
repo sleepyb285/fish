@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block breadcrumbs %}
-<div class="breadcrumb" style="background-color: #37AAEB">
+<div class="breadcrumb">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -16,140 +16,116 @@
 {% block content %}
 {% load imagekit %}
 {% load static %}
-
-
-
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Что-то по магазину</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <p><img class="img-fluid" src="{% static 'logo.png' %}"></p>
-    <p><a href="/">Вернуться на главную</a></p>
-    <p><a href="{% url 'catalog' %}">Каталог</a></p>
-    <p>Категории:</p>
-    <ul>
-    {% if categories %}
-      {% for category in categories %}
-        <li><a href="/catalog/{{category.slug}}">{{category.name}}</a></li>
-        {% for sub in subcategories %}
-        <ul>
-          {% if sub.parent == category %}
-            <li><a href="/catalog/{{sub.slug}}">{{sub.name}}</a></li>
+  <div class="section">
+    <div class="container" >
+      <h1>Каталог рыбы Fishking</h1>
+      <p style="opacity: 50%;">Найдено {{ count }} товаров
+      </p>
+      <div class="row" >
+        <!-- Кнопки категорий -->
+        <div class="col-3">
+          <div class="col category-list">
+            {% if categories %}
+            {% for category in categories %}
+            <a href="/catalog/{{category.slug}}">
+              <div class="col">
+                {{category.name}}
+              </div>
+            </a>
+            {% endfor %}
           {% endif %}
-        </ul>
-        {% endfor %}
-      {% endfor %}
-    {% endif %}
-    </ul>
-    <p>Поставщики:</p>
-    <ul>
-      {% if providers %}
-        {% for provider in providers %}
-          <li><a href="/provider/{{provider.slug}}">{{provider.name}}</a></li>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row"> 
+            <!-- Карточки товаров -->
+            {% if fishies %}
+                {% for fish in fishies %}
+                    <div class="col-4">
+                      <div class="inner-container">
+                            <div class="card">
+                                {% if fish.image %}
+                                  <a href="fish/{{ fish.slug }}" >
+                                    <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
+                                  </a>
+                                {% else %}
+                                  <a href="fish/{{ fish.slug }}" >
+                                    <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
+                                  </a>
+                                {%  endif %}
+                                <div class="card-body">
+                                  <p class = "card-category">{{ fish.category }}</p>
+                                  <h5 class="card-title">{{ fish.name }}</h5>
+                                  {% for attr in attributes %}
+                                    {% if attr.rel_fish == fish %}
+                                      <p class="attributes">{{attr.rel_attribute}}: {{attr}}</p>
+                                    {% endif %}
+                                  {% endfor %}
+                                  <p class="card-text">Всего за {{ fish.price }} руб.</p>
+                                  <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                                  <button type="button" class="btn btn-commers" data-bs-toggle="modal" data-bs-target="#Callback">
+                                    Получить КП
+                                  </button>
+                                  
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>There are no fish in the store. Eat meat</p>
+            {% endif %}
+  </div>        
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TODO сайдбар с навигацией -->
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Что-то по магазину</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p><img class="img-fluid" src="{% static 'logo.png' %}"></p>
+      <p><a href="/">Вернуться на главную</a></p>
+      <p><a href="{% url 'catalog' %}">Каталог</a></p>
+      <p>Категории:</p>
+      <ul>
+      {% if categories %}
+        {% for category in categories %}
+          <li><a href="/catalog/{{category.slug}}">{{category.name}}</a></li>
+          {% for sub in subcategories %}
+          <ul>
+            {% if sub.parent == category %}
+              <li><a href="/catalog/{{sub.slug}}">{{sub.name}}</a></li>
+            {% endif %}
+          </ul>
+          {% endfor %}
         {% endfor %}
       {% endif %}
       </ul>
-    <p><a href="#">Акции</a></p>
-    <p><a href="{% url 'feedback' %}">Оставить отзыв</a></p>
-    
-  </div>
+      <p>Поставщики:</p>
+      <ul>
+        {% if providers %}
+          {% for provider in providers %}
+            <li><a href="/provider/{{provider.slug}}">{{provider.name}}</a></li>
+          {% endfor %}
+        {% endif %}
+        </ul>
+      <p><a href="#">Акции</a></p>
+      <p><a href="{% url 'feedback' %}">Оставить отзыв</a></p>
+      
     </div>
-
-<div class="section">
-  <div class="container">
-      <div class="row">
-      <div class="col-4"><button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">test sidebar</button></div>
-          <div class="col-4">
-          <div id="carousel-category" class="carousel carousel-dark slide" data-bs-ride="false" data-bs-touch = "true" autoplay>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{% static '9TRL7gjyc.gif' %}" class="d-block w-100" alt="...">
-              <div class="carousel-caption-color $black" >
-                <h5>placeholder</h5>
-                <p>Не забудь подумать, как сделать первый слайд</p>
-              </div>
-            </div>
-            {% if categories %}
-            {% for category in categories %}
-            <div class="carousel-item">
-
-              {% if category.image %}
-                <a href="/catalog/{{category.slug}}">
-                  <img class="img-fluid" src="/{{category.image}}" class="d-block w-100" alt="sample text">
-                </a>
-              {% else %}
-                <a href="/catalog/{{category.slug}}">
-                  <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="d-block w-100" alt="sample text">
-                </a>
-              {%  endif %}
-              <div class="carousel-caption-color $black">
-                <h5>{{ category.name }}</h5>
-                <p><a href="/catalog/{{category.slug}}">Посмотреть в каталоге</a></p>
-              </div>
-            </div>
-            {% endfor %}
-            {% endif %}
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carousel-category" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carousel-category" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
       </div>
-      <div class="col-4"></div>
-    </div>
-  </div>
-</div>
-  
-  <div class="section">
-    <div class="container">
-      <h4>Товары</h4>
-      <div class="row" >
-          {% if fishies %}
-              {% for fish in fishies %}
-                  <div class="col-3">
-                    <div class="inner-container">
-                          <div class="card">
-                              {% if fish.image %}
-                                <a href="fish/{{ fish.slug }}" >
-                                  <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
-                                </a>
-                              {% else %}
-                                <a href="fish/{{ fish.slug }}" >
-                                  <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" class="card-img-top" alt="sample text">
-                                </a>
-                              {%  endif %}
-                              <div class="card-body">
-                                <h5 class="card-title">{{ fish.name }}</h5>
-                                <p class="card-text">Всего за {{ fish.price }} руб.</p>
-                                <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
-                                
-                              </div>
-                            </div>
-                      </div>
-                  </div>
-              {% endfor %}
-          {% else %}
-              <p>There are no fish in the store. Eat meat</p>
-          {% endif %}
-      </div>
-    </div>
-  </div>
-
-
-
 {% endblock %}
 
 
 {% block pagination %}
-
-
 <div class="pagination">
   <span class="step-links">
       {% if fishies.has_previous %}
@@ -167,4 +143,44 @@
       {% endif %}
   </span>
 </div>
+
+
+<div class="modal fade" id="Callback" tabindex="-1" aria-labelledby="CallbackLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CallbackLabel">Получить КП</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form.visible_fields %}
+          <div class="input-container">
+              <div class="col">
+              <div class="col">{{ field.label_tag }}</div>
+              {% if field.errors %}
+              <div class="col">
+                  {{ field.errors }}
+              </div>
+              {% endif %}
+              <div class="col">
+              {{ field }}
+              </div>
+              </div>
+          </div>
+
+          {% endfor %}
+          <div class="col" style="opacity: 50%">*Поля, обязательные для заполнения</div>
+          <input type="submit" value="Отправить">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock %}
+
+
+
+

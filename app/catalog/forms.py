@@ -12,10 +12,6 @@ class CallbackForm(ModelForm):
             'email': ('E-mail'),
             'text' : ('Вопрос')
         }
-    # name = forms.CharField(label='Имя*', max_length=100)
-    # email =forms.EmailField(label ='E-mail', required=False)
-    # phone = PhoneField()
-    # body = forms.CharField(label = 'Вопрос',widget=forms.Textarea)
 
 class FeedbackForm(ModelForm):
     class Meta:
@@ -27,10 +23,6 @@ class FeedbackForm(ModelForm):
             'body': ('Напишите отзыв'),
             'image' : ('Прикрепить изображение')
         }
-        # widgets = {
-        #     'fish': forms.HiddenInput()
-        # }
-        #При добавлении форма не получает ключевое поле и не сохраняет ничего в БД
 
 class Feedback_newForm(ModelForm):
     class Meta:

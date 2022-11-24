@@ -51,9 +51,7 @@ class Fish(models.Model):
 
     def get_absolute_url(self):
         return reverse('fish-detail', kwargs={'fish_slug': self.slug})
-
-
-
+    
 
 class FilterInfo(models.Model):
     rel_attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE)
