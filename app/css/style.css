@@ -20,7 +20,7 @@ body {
     background-color: aliceblue;
 }
 /* Ссылки в хлебокрошках */
-.breadcrumb {
+.breadcrumb a{
     text-decoration: none;
 }
 /* Автовыравнивание */
@@ -45,7 +45,8 @@ div {
 }
 /* Атрибуты */
 .attributes {
-    opacity: 50%;
+    opacity: 90%;
+    justify-content: space-between;
 }
 /* Кнопки категорий */
 .category-list .col {
@@ -66,7 +67,7 @@ div {
     background: #5ab9ea;
 }
 /* Блок формы коллбэка */
-#call-req {
+#call-req, #Feedback {
     border: 1px solid #172a7e;
 }
 /* Цвет текста в формах */
@@ -86,6 +87,22 @@ div {
 .pagination {
     color: black;
 }
+/* Бонусы в подробностях рыбы */
+.features-list ul {
+    margin-top: 4rem;
+    opacity: 80%;
+    list-style: none;
+    padding-left: 0;
+}
+/* Галочка для списка бонусов */
+.features-list ul li:before {
+    content: '\2713';
+  }
+
+
+
+
+
 
 /* Кнопка наверх by De'knees */
 .to-top{

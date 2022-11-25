@@ -1,0 +1,34 @@
+{% for fish in fishies %}
+<div class="col-4">
+    <div class="inner-container">
+
+        <div class="card">
+            {% if fish.image %}
+            <a href="fish/{{ fish.slug }}">
+                <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
+            </a>
+            {% else %}
+            <a href="fish/{{ fish.slug }}">
+                <img class="img-fluid" src="{{empty_image}}" class="card-img-top" alt="sample text">
+            </a>
+            {% endif %}
+            <div class="card-body">
+                <p class="card-category">{{ fish.category }}</p>
+                <h5 class="card-title">{{ fish.name }}</h5>
+                {% for attr in attributes %}
+                {% if attr.rel_fish == fish %}
+                <p class="attributes"><i>{{attr.rel_attribute}}:</i> <strong>{{attr}}</strong></p>
+                {% endif %}
+                {% endfor %}
+                <p class="card-text">Всего за {{ fish.price }} руб.</p>
+                <div>
+                    <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                    <button type="button" class="btn btn-commers" data-bs-toggle="modal" data-bs-target="#Callback">
+                        Получить КП
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

@@ -27,21 +27,38 @@
 
 
 <div class="container">
-  <h1>{{ fish.name }}</h1>
-  <div class="col"><strong>Название:</strong> {{ fish.name }}</div>
-  <div class="col"><strong>Категория:</strong><a href="/catalog/{{fish.category.slug}}"> {{ fish.category.name }}</a></div>
-  <div class="col"><strong>Цена:</strong> {{ fish.price }} руб.</div>
-  <div class="col"><strong>Поставщик:</strong><a href="/provider/{{fish.provider.slug}}"> {{ fish.provider.name }}</a></div>
-  {% if fish.image %}
-  <div class="col"><img src="/{{ fish.image }}"></div>
-  {% else %}
-  <div class="col"><img src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
-  {% endif %}
-  <div class="col"><strong>Атрибуты:</strong>
-    {% for attr in fish.filterinfo_set.all %}
-    <div>{{attr.rel_attribute.name}} : {{attr.value}}</div>
-    {%endfor %}
+  <div class="row">
+    <h1>{{ fish.name }}</h1>
+    <div class="col-4 fish-beauty">
+      <div class="col"><strong>Характеристики:</strong>
+        {% for attr in fish.filterinfo_set.all %}
+        <div class="fish-attr">{{attr.rel_attribute.name}} : {{attr.value}}</div>
+        {%endfor %}
+      </div>
+      <hr>
+      <div class="col"><strong>Поставщик:</strong><a href="/provider/{{fish.provider.slug}}"> {{ fish.provider.name }}</a></div>
+      <div class="col fish-price"><strong>Цена:</strong> {{ fish.price }} руб.</div>
+      <div class="col features-list">
+        <ul>
+          <li> Гарантия качества</li>
+          <li> Доставка до двух суток</li>
+          <li> Леща в подарок</li>
+          <li> Нахуй ты это читаешь?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col fish-image">
+      {% if fish.image %}
+      <div class="col"><img src="/{{ fish.image }}"></div>
+      {% else %}
+      <div class="col"><img src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
+      {% endif %}
+
+    </div>
   </div>
+  
+
+</div>
   <div class="container">
     <div class="row">
       <div class="col-2"></div>
@@ -49,14 +66,12 @@
         <div class="col" style="text-align: center;">
           <strong>Ваши отзывы</strong>
         </div>
-        <br>
         {% if shitfan %}
   
           {% for shit in shitfan %}
           <div class="row">
             <div class="col-3">
               <strong>{{shit.name}}</strong>
-              <br>
               {{shit.date}}
             </div>
             <div class="col-6">{{shit.body}}</div>
@@ -106,7 +121,6 @@
                 </div>
                 {% endfor %}
                 <div class="col" style="opacity: 50%">*Поля, обязательные для заполнения</div>
-                <div class="col" style="opacity: 30%">Изображения проходят предварительную модерацию</div>
                 <input type="submit" value="Отправить">
           </form>
         </div>

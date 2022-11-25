@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Create your views here.
 def index(request):
-    random_fish = Fish.objects.order_by('?')[:12]
+    random_fish = Fish.objects.order_by('?')[:8]
     categories = Category.objects.filter(parent = None)
     return render (request,'index.html', {'categories':categories,'random_fish':random_fish})
 
