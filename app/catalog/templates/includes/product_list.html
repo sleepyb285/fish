@@ -4,12 +4,12 @@
 
         <div class="card">
             {% if fish.image %}
-            <a href="fish/{{ fish.slug }}">
-                <img class="img-fluid" src="/{{fish.image}}" class="card-img-top" alt="sample text">
+            <a href="/catalog/fish/{{ fish.slug }}">
+                <img class="img-fluid" src="/{{fish.image}}" alt="sample text">
             </a>
             {% else %}
-            <a href="fish/{{ fish.slug }}">
-                <img class="img-fluid" src="{{empty_image}}" class="card-img-top" alt="sample text">
+            <a href="/catalog/fish/{{ fish.slug }}">
+                <img class="img-fluid" src="{{empty_image}}" alt="sample text">
             </a>
             {% endif %}
             <div class="card-body">
@@ -17,12 +17,12 @@
                 <h5 class="card-title">{{ fish.name }}</h5>
                 {% for attr in attributes %}
                 {% if attr.rel_fish == fish %}
-                <p class="attributes"><i>{{attr.rel_attribute}}:</i> <strong>{{attr}}</strong></p>
+                <p class="attributes"><em>{{attr.rel_attribute}}:</em> <strong>{{attr}}</strong></p>
                 {% endif %}
                 {% endfor %}
                 <p class="card-text">Всего за {{ fish.price }} руб.</p>
                 <div>
-                    <a href="fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                    <a href="/catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
                     <button type="button" class="btn btn-commers" data-bs-toggle="modal" data-bs-target="#Callback">
                         Получить КП
                     </button>
@@ -32,3 +32,5 @@
     </div>
 </div>
 {% endfor %}
+<!-- Форма для получения КП -->
+{% include "includes/forms/callback_req_form.html" with form=form %}

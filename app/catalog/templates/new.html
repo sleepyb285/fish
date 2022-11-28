@@ -7,25 +7,24 @@
         <div class="col-4">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                    {% for field in form.visible_fields %}
-                    <div class="div">
-                      <div class="col">
-                      <div class="col">{{ field.label_tag }}</div>
-                      {% if field.errors %}
-                      <div class="col">
-                          {{ field.errors }}
-                      </div>
-                      {% endif %}
-                      <div class="col">
-                      {{ field }}
-                      </div>
-                      </div>
+                {% for field in form.visible_fields %}
+                <div class="div">
+                    <div class="col">
+                        <div class="col">{{ field.label_tag }}</div>
+                        {% if field.errors %}
+                        <div class="col">
+                            {{ field.errors }}
+                        </div>
+                        {% endif %}
+                        <div class="col">
+                            {{ field }}
+                        </div>
                     </div>
-                    {% endfor %}
-                    <div class="col" style="opacity: 50%">*Поля, обязательные для заполнения</div>
-                    <div class="col" style="opacity: 30%">Изображения проходят предварительную модерацию</div>
-                    <input type="submit" value="Отправить">
-              </form>
+                </div>
+                {% endfor %}
+                <div class="col" style="color: gray;">*Поля, обязательные для заполнения</div>
+                <input type="submit" value="Отправить">
+            </form>
         </div>
         <div class="col-4"></div>
     </div>

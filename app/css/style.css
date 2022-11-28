@@ -6,48 +6,58 @@
 #8860d0    кнопки перезвона */
 
 /* цвета шапки и подвала */
-header, footer {
+header,
+footer {
     background: #84ceeb;
 }
 
 /* Ссылки в шапке и подвале */
-header a, footer a{
+header a,
+footer a {
     text-decoration: none;
     color: black;
 }
+
 /* Заливка бэграунда */
 body {
     background-color: aliceblue;
 }
+
 /* Ссылки в хлебокрошках */
-.breadcrumb a{
+.breadcrumb a {
     text-decoration: none;
 }
+
 /* Автовыравнивание */
 div {
     margin: auto;
 }
+
 /* Карточки товаров */
 .card {
-    background-color: transparent;
+    background-color: white;
     margin-bottom: 1rem;
     text-align: center;
 }
+
 /* Выравнивание размера картинок товаров (костыль?) */
 .card .img-fluid {
     max-width: 203px;
     max-height: 136px;
 }
+
 /* Категории в карточках товаров */
 .card-category {
     opacity: 50%;
 
 }
+
 /* Атрибуты */
 .attributes {
     opacity: 90%;
     justify-content: space-between;
 }
+
 /* Кнопки категорий */
 .category-list .col {
     margin-bottom: 0.5rem;
@@ -55,49 +65,60 @@ div {
     padding: 0.5rem;
     transition: 0.3s;
 }
+
 /* Ссылки внутри кнопок категорий */
 .category-list a {
     color: inherit;
-    text-decoration:none; 
+    text-decoration: none;
     font-size: larger;
-    
+
 }
+
 /* Эффекты для кнопок категорий */
 .category-list :hover {
     background: #5ab9ea;
 }
+
 /* Блок формы коллбэка */
-#call-req, #Feedback {
+#call-req,
+#Feedback {
     border: 1px solid #172a7e;
 }
+
 /* Цвет текста в формах */
 .input-container {
     color: rgb(78, 12, 78);
 }
+
 /* Кнопка Получить КП */
 .btn-commers {
     background-color: #8860d0;
     color: white
 }
+
 /* Обычные кнопки */
 .btn-primary {
     background-color: #5690E9;
 }
+
 /* TODO пагинация */
 .pagination {
     color: black;
 }
+
 /* Бонусы в подробностях рыбы */
 .features-list ul {
     margin-top: 4rem;
-    opacity: 80%;
+    color: gray;
     list-style: none;
     padding-left: 0;
+
 }
+
 /* Галочка для списка бонусов */
 .features-list ul li:before {
     content: '\2713';
-  }
+}
 
 
 
@@ -105,7 +126,7 @@ div {
 
 
 /* Кнопка наверх by De'knees */
-.to-top{
+.to-top {
     position: fixed;
     right: 10px;
     background: #fff;
@@ -115,17 +136,20 @@ div {
     border: 1px solid #dbdbdb;
     transition: 0.3s;
 }
-.to-top a{
+
+.to-top a {
     height: 100%;
     width: 100%;
     display: flex;
     padding: 10px;
     text-decoration: none;
 }
-.to-top:hover{
+
+.to-top:hover {
     background: #84CEEB;
 }
-.to-top:hover > a{
-    
+
+.to-top:hover>a {
+
     color: #FFF;
 }

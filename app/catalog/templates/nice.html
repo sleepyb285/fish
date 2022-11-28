@@ -3,16 +3,24 @@
 {% block content %}
 {% load static %}
 
+<script>
+    function goBack() {
+        window.history.back()
+    }
+</script>
+
+<!-- Спиздил код из просторов интернета -->
+
 <div class="container">
-    <div class="col-4"></div>
+
     <div class="col-4">
-        Заебись! Ты красавчик!
+        Отлично! Ты красавчик!
         Представь огромную зеленую галочку!
         Вот такую:
         <div class="col"><img class="img-fluid" src="{% static 'nice.png' %}"></div>
-
+        <input type="button" value="Вернуться назад" onclick="goBack()">
     </div>
-    <div class="col-4"></div>
+
 </div>
 
 

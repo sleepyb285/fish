@@ -2,24 +2,24 @@
 
 {% block breadcrumbs %}
 
-<ul class="breadcrumb">
+<div class="breadcrumb">
   <div class="container">
     <div class="row">
       <div class="col">
         <a href="/">Home</a>/
         <a href="{% url 'catalog' %}">Каталог</a>/
         {% if fish.category.parent %}
-          <a href="/catalog/{{fish.category.parent.slug}}">{{fish.category.parent.name}}</a>/
+        <a href="/catalog/{{fish.category.parent.slug}}">{{fish.category.parent.name}}</a>/
         {% endif %}
         <a href="/catalog/{{ fish.category.slug }}">{{fish.category.name}}</a>/
 
         {{fish.name}}
-        
-      </div> 
+
+      </div>
     </div>
   </div>
-</ul>
- 
+</div>
+
 {% endblock %}
 
 {% block content %}
@@ -36,14 +36,15 @@
         {%endfor %}
       </div>
       <hr>
-      <div class="col"><strong>Поставщик:</strong><a href="/provider/{{fish.provider.slug}}"> {{ fish.provider.name }}</a></div>
+      <div class="col"><strong>Поставщик:</strong><a href="/provider/{{fish.provider.slug}}"> {{ fish.provider.name
+          }}</a></div>
       <div class="col fish-price"><strong>Цена:</strong> {{ fish.price }} руб.</div>
       <div class="col features-list">
         <ul>
           <li> Гарантия качества</li>
           <li> Доставка до двух суток</li>
           <li> Леща в подарок</li>
-          <li> Нахуй ты это читаешь?</li>
+          <li> Зачем ты это читаешь?</li>
         </ul>
       </div>
     </div>
@@ -56,96 +57,48 @@
 
     </div>
   </div>
-  
+
 
 </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-8">
-        <div class="col" style="text-align: center;">
-          <strong>Ваши отзывы</strong>
-        </div>
-        {% if shitfan %}
-  
-          {% for shit in shitfan %}
-          <div class="row">
-            <div class="col-3">
-              <strong>{{shit.name}}</strong>
-              {{shit.date}}
-            </div>
-            <div class="col-6">{{shit.body}}</div>
-            <div class="col-3">
-              {% if shit.image %}
-                <img class="img-fluid" src="/{{shit.image}}" alt="sample text">
-              {% endif %}
-            </div>
-          </div>
-          <hr>
-          {% endfor %}
-  
-        {% endif %}
-  
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="col" style="text-align: center;">
+        <strong>Ваши отзывы</strong>
       </div>
-      <div class="col-2"></div>
-    </div>
-  </div>
-  
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Feedback">
-    Оставить отзыв
-  </button>
+      {% if shitfan %}
 
-  <div class="modal fade" id="Feedback" tabindex="-1" aria-labelledby="FeedbackLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="FeedbackLabel">Оставить отзыв</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      {% for shit in shitfan %}
+      <div class="row">
+        <div class="col-3">
+          <strong>{{shit.name}}</strong>
+          {{shit.date}}
         </div>
-        <div class="modal-body">
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-                {% for field in form.visible_fields %}
-                <div class="div">
-                  <div class="col">
-                  <div class="col">{{ field.label_tag }}</div>
-                  {% if field.errors %}
-                  <div class="col">
-                      {{ field.errors }}
-                  </div>
-                  {% endif %}
-                  <div class="col">
-                  {{ field }}
-                  </div>
-                  </div>
-                </div>
-                {% endfor %}
-                <div class="col" style="opacity: 50%">*Поля, обязательные для заполнения</div>
-                <input type="submit" value="Отправить">
-          </form>
+        <div class="col-6">{{shit.body}}</div>
+        <div class="col-3">
+          {% if shit.image %}
+          <img class="img-fluid" src="/{{shit.image}}" alt="sample text">
+          {% endif %}
         </div>
       </div>
-    </div>
-  </div>
+      <hr>
+      {% endfor %}
 
+      {% endif %}
+
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Feedback">
+  Оставить отзыв
+</button>
+<!-- Форма для отзывов -->
+{% include "includes/forms/feedback_form.html" with form=form %}
 {% endblock %}
 
 {% block pagination %}
-<div class="pagination">
-  <span class="step-links">
-      {% if shitfan.has_previous %}
-          <a href="?page=1">&laquo; В начало</a>
-          <a href="?page={{ shitfan.previous_page_number }}">Назад</a>
-      {% endif %}
-
-      <span class="current">
-          Страница {{ shitfan.number }} из {{ shitfan.paginator.num_pages }}.
-      </span>
-
-      {% if shitfan.has_next %}
-          <a href="?page={{ shitfan.next_page_number }}">Дальше</a>
-          <a href="?page={{ shitfan.paginator.num_pages }}">В конец &raquo;</a>
-      {% endif %}
-  </span>
-</div>
+{% include "includes/pagination/feedback.html" %}
 {% endblock %}

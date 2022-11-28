@@ -102,3 +102,5 @@ class Feedback_generic(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to = 'uploads/comms/%Y/%m/%d/', null = True, blank = True)
+    class Meta:
+        ordering = ['-date']

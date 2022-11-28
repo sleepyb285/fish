@@ -8,66 +8,27 @@
       <div class="col"><a href="/">Home</a>/
         <a href="{% url 'catalog' %}">Каталог</a>/
         {{provider.name}}
-      </div> 
+      </div>
     </div>
   </div>
 </ul>
- 
+
 {% endblock %}
 
 {% block content %}
 {% load static %}
 <div class="container text-center">
-<h1>{{provider.name}}</h1>
+  <h1>{{provider.name}}</h1>
 
-<h4>Товары от этого поставщика:</h4>
-<div class="row" >
-{% if fishies %}
-{% for fish in fishies %}
-    <div class="col">
-            <div class="card" style="width: 18rem;">
-                {% if fish.image %}
-                  <a href="/catalog/fish/{{ fish.slug }}" >
-                    <img class="img-fluid" src="/{{fish.image}}" alt="sample text">
-                  </a>
-                {% else %}
-                  <a href="/catalog/fish/{{ fish.slug }}" >
-                    <img class="img-fluid" src="{% static 'fish_placeholder.png' %}" alt="sample text">
-                  </a>
-                {%  endif %}
-                <div class="card-body">
-                  <h5 class="card-title">{{ fish.name }}</h5>
-                  <p class="card-text">Всего за {{ fish.price }} руб.</p>
-                  <a href="/catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-{% else %}
-    <p>None yet... But you can try another provider!</p>
-{% endif %}
-</div>
+  <h4>Товары от этого поставщика:</h4>
+  <div class="row">
+    <!-- Карточки товаров -->
+    {% static 'fish_placeholder.png' as empty_image %}
+    {% include "includes/product_list.html" with fishies=fishies empty_image=empty_image %}
+  </div>
 </div>
 {% endblock %}
 
 {% block pagination %}
-
-
-<div class="pagination">
-  <span class="step-links">
-      {% if fishies.has_previous %}
-          <a href="?page=1">&laquo; В начало</a>
-          <a href="?page={{ fishies.previous_page_number }}">Назад</a>
-      {% endif %}
-
-      <span class="current">
-          Страница {{ fishies.number }} из {{ fishies.paginator.num_pages }}.
-      </span>
-
-      {% if fishies.has_next %}
-          <a href="?page={{ fishies.next_page_number }}">Дальше</a>
-          <a href="?page={{ fishies.paginator.num_pages }}">В конец &raquo;</a>
-      {% endif %}
-  </span>
-</div>
+{% include "includes/pagination_fish.html" with fishies=fishies %}
 {% endblock %}

@@ -1,0 +1,17 @@
+<div class="pagination">
+  <span class="step-links">
+    {% if fishies.has_previous %}
+    <a href="?page=1">&laquo; В начало</a>
+    <a href="?page={{ fishies.previous_page_number }}">Назад</a>
+    {% endif %}
+
+    <span class="current">
+      Страница {{ fishies.number }} из {{ fishies.paginator.num_pages }}.
+    </span>
+
+    {% if fishies.has_next %}
+    <a href="?page={{ fishies.next_page_number }}">Дальше</a>
+    <a href="?page={{ fishies.paginator.num_pages }}">В конец &raquo;</a>
+    {% endif %}
+  </span>
+</div>

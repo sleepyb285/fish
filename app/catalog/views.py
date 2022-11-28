@@ -7,9 +7,22 @@ from datetime import datetime
 
 # Create your views here.
 def index(request):
+    if request.method == 'POST':
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            a = Callback_request(
+                name = form.cleaned_data["name"],
+                phone = form.cleaned_data["phone"],
+                email = form.cleaned_data["email"],
+                text = form.cleaned_data["text"],
+            )
+            a.save()
+            return HttpResponseRedirect('/nice/')
+    else:
+        form = CallbackForm()
     random_fish = Fish.objects.order_by('?')[:8]
     categories = Category.objects.filter(parent = None)
-    return render (request,'index.html', {'categories':categories,'random_fish':random_fish})
+    return render (request,'index.html', {'categories':categories,'random_fish':random_fish, 'form':form})
 
 
 def catalog(request):
@@ -35,7 +48,6 @@ def catalog(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     count = len(fishies)
-    form = CallbackForm
     return render (request,'catalog.html',{'categories':categories,'fishies':page_obj, 'providers':providers, 'subcategories':subcategories, 'count':count, 'form':form, 'attributes':attributes})
 
 
@@ -67,6 +79,19 @@ def FishDetailView (request, slug):
     return render (request,'fish_detail.html',{'fish':fish, 'shitfan':page_obj, 'form':form})
 
 def CategoryDetailView (request,slug):
+    if request.method == 'POST':
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            a = Callback_request(
+                name = form.cleaned_data["name"],
+                phone = form.cleaned_data["phone"],
+                email = form.cleaned_data["email"],
+                text = form.cleaned_data["text"],
+            )
+            a.save()
+            return HttpResponseRedirect('/nice/')
+    else:
+        form = CallbackForm()
     try:
         cat = Category.objects.get(slug=slug)
         children = Category.objects.filter(parent = cat.id)
@@ -78,13 +103,26 @@ def CategoryDetailView (request,slug):
         page_obj = paginator.get_page(page_number)
     except Category.DoesNotExist:
         raise Http404()
-    return render (request,'category_detail.html', {'cat':cat, 'fishies':page_obj, 'children':children})
+    return render (request,'category_detail.html', {'cat':cat, 'fishies':page_obj, 'children':children, 'form':form})
 
 def contacts(request):
     locations = Location.objects.all()
     return render(request, 'contacts.html', {'locations':locations})
 
 def ProviderDetailView(request, slug):
+    if request.method == 'POST':
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            a = Callback_request(
+                name = form.cleaned_data["name"],
+                phone = form.cleaned_data["phone"],
+                email = form.cleaned_data["email"],
+                text = form.cleaned_data["text"],
+            )
+            a.save()
+            return HttpResponseRedirect('/nice/')
+    else:
+        form = CallbackForm()
     try:
         prov = Provider.objects.get(slug=slug)
         fishies = Fish.objects.filter(provider = prov.id)
@@ -94,7 +132,7 @@ def ProviderDetailView(request, slug):
 
     except Provider.DoesNotExist:
         raise Http404()
-    return render(request, 'provider_detail.html', {'provider':prov, 'fishies':page_obj})
+    return render(request, 'provider_detail.html', {'provider':prov, 'fishies':page_obj, 'form':form})
 
 def LocationDetailView(request,id):
 
