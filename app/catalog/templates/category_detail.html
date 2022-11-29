@@ -25,29 +25,19 @@
   <div class="container">
     <div class="row">
       {% if children %}
-      <h3>Подкатегории:</h3>
+      <div>Подкатегории:</div>
       {% endif %}
-      <div class="col-2 category-list" style="margin-left: 1rem;">
-
-        {% if children %}
-
-        {% for child in children %}
-        <a href="/catalog/{{child.slug}}">
-          <div class="col">
-            {{child}}
-          </div>
-        </a>
-        {% endfor %}
-        {% endif %}
+      <div class="col-3">
+        <!-- Кнопки категорий -->
+        {% include "includes/category_list.html" with categories=children %}
       </div>
       <div class="col">
-        <div class="col">
-          {% if cat.image %}
-          <div class="col"><img class="img-fluid" style="padding-left: 10rem;" src="/{{ cat.image }}"></div>
-          {% else %}
-          <div class="col"><img class="img-fluid" src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
-          {% endif %}
-        </div>
+        {% if cat.image %}
+        <div class="col cat_img"><img class="img-fluid" src="/{{ cat.image }}"></div>
+        {% else %}
+        <div class="col cat_img"><img class="img-fluid" src="{% static 'fish_placeholder.png' %}"
+            alt="зачеркнутая рыба"></div>
+        {% endif %}
         <h4 style="text-align: center;">Товары из этой категории:</h4>
         <div class="row">
           <!-- Карточки товаров -->

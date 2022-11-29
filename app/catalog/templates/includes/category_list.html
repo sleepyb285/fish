@@ -1,0 +1,11 @@
+<div class="col category-list">
+  {% if categories %}
+  {% for category in categories %}
+  <a href="/catalog/{{category.slug}}">
+    <div class="col">
+      {{category.name}}
+    </div>
+  </a>
+  {% endfor %}
+  {% endif %}
+</div>

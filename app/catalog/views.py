@@ -70,7 +70,7 @@ def FishDetailView (request, slug):
     try:
         fish = Fish.objects.get(slug=slug)
         shitfan = Feedback.objects.filter(fish = fish.id)
-        paginator = Paginator(shitfan,12)
+        paginator = Paginator(shitfan,5)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
     except Fish.DoesNotExist:

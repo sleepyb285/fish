@@ -1,35 +1,39 @@
 {% for fish in fishies %}
 <div class="col-4">
-    <div class="inner-container">
 
-        <div class="card">
-            {% if fish.image %}
-            <a href="/catalog/fish/{{ fish.slug }}">
-                <img class="img-fluid" src="/{{fish.image}}" alt="sample text">
-            </a>
-            {% else %}
-            <a href="/catalog/fish/{{ fish.slug }}">
-                <img class="img-fluid" src="{{empty_image}}" alt="sample text">
-            </a>
-            {% endif %}
-            <div class="card-body">
+
+    <div class="card">
+        {% if fish.image %}
+        <a href="/catalog/fish/{{ fish.slug }}">
+            <img class="img-fluid" src="/{{fish.image}}" alt="sample text">
+        </a>
+        {% else %}
+        <a href="/catalog/fish/{{ fish.slug }}">
+            <img class="img-fluid" src="{{empty_image}}" alt="sample text">
+        </a>
+        {% endif %}
+        <div class="card-body">
+            <div>
                 <p class="card-category">{{ fish.category }}</p>
                 <h5 class="card-title">{{ fish.name }}</h5>
+            </div>
+            <div class="attributes">
                 {% for attr in attributes %}
                 {% if attr.rel_fish == fish %}
-                <p class="attributes"><em>{{attr.rel_attribute}}:</em> <strong>{{attr}}</strong></p>
+                <p><span><em>{{attr.rel_attribute}}:</em></span> <span><strong>{{attr}}</strong></span></p>
                 {% endif %}
                 {% endfor %}
-                <p class="card-text">Всего за {{ fish.price }} руб.</p>
-                <div>
-                    <a href="/catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
-                    <button type="button" class="btn btn-commers" data-bs-toggle="modal" data-bs-target="#Callback">
-                        Получить КП
-                    </button>
-                </div>
+            </div>
+            <p class="card-text">Всего за {{ fish.price }} руб.</p>
+            <div class="card-buttons">
+                <a href="/catalog/fish/{{ fish.slug }}" class="btn btn-primary">Подробнее</a>
+                <button type="button" class="btn btn-commers" data-bs-toggle="modal" data-bs-target="#Callback">
+                    Получить КП
+                </button>
             </div>
         </div>
     </div>
+
 </div>
 {% endfor %}
 <!-- Форма для получения КП -->

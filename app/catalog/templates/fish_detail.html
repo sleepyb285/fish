@@ -29,15 +29,14 @@
 <div class="container">
   <div class="row">
     <h1>{{ fish.name }}</h1>
-    <div class="col-4 fish-beauty">
+    <div class="col-2 fish-beauty">
       <div class="col"><strong>Характеристики:</strong>
         {% for attr in fish.filterinfo_set.all %}
         <div class="fish-attr">{{attr.rel_attribute.name}} : {{attr.value}}</div>
         {%endfor %}
       </div>
       <hr>
-      <div class="col"><strong>Поставщик:</strong><a href="/provider/{{fish.provider.slug}}"> {{ fish.provider.name
-          }}</a></div>
+      <div class="col"><strong>Поставщик:</strong><a href="/provider/{{fish.provider.slug}}"> {{ fish.provider.name}}</a></div>
       <div class="col fish-price"><strong>Цена:</strong> {{ fish.price }} руб.</div>
       <div class="col features-list">
         <ul>
@@ -50,21 +49,18 @@
     </div>
     <div class="col fish-image">
       {% if fish.image %}
-      <div class="col"><img src="/{{ fish.image }}"></div>
+      <img src="/{{ fish.image }}">
       {% else %}
-      <div class="col"><img src="{% static 'fish_placeholder.png' %}" alt="sample text"></div>
+      <img src="{% static 'fish_placeholder.png' %}" alt="sample text">
       {% endif %}
 
     </div>
   </div>
-
-
 </div>
+
 <div class="container">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <div class="col" style="text-align: center;">
+    <div class="col fish_feedback">
+      <div class="col" style="text-align: center; margin-bottom: 2rem;">
         <strong>Ваши отзывы</strong>
       </div>
       {% if shitfan %}
@@ -73,7 +69,8 @@
       <div class="row">
         <div class="col-3">
           <strong>{{shit.name}}</strong>
-          {{shit.date}}
+          <p>{{shit.date}}</p>
+          
         </div>
         <div class="col-6">{{shit.body}}</div>
         <div class="col-3">
@@ -87,14 +84,12 @@
 
       {% endif %}
 
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Feedback">
+        Оставить отзыв
+      </button>
     </div>
-    <div class="col-2"></div>
-  </div>
 </div>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Feedback">
-  Оставить отзыв
-</button>
 <!-- Форма для отзывов -->
 {% include "includes/forms/feedback_form.html" with form=form %}
 {% endblock %}

@@ -48,15 +48,27 @@ div {
 
 /* Категории в карточках товаров */
 .card-category {
-    opacity: 50%;
+    color: gray;
+    margin-bottom: 0;
+}
 
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Атрибуты */
 .attributes {
-    opacity: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.attributes p {
+    margin-bottom: 0;
+    display: flex;
     justify-content: space-between;
 }
+
 
 /* Кнопки категорий */
 .category-list .col {
@@ -77,6 +89,7 @@ div {
 /* Эффекты для кнопок категорий */
 .category-list :hover {
     background: #5ab9ea;
+    color: white;
 }
 
 /* Блок формы коллбэка */
@@ -112,7 +125,6 @@ div {
     color: gray;
     list-style: none;
     padding-left: 0;
-
 }
 
 /* Галочка для списка бонусов */
@@ -120,9 +132,19 @@ div {
     content: '\2713';
 }
 
+.fish-image {
+    text-align: center;
 
+}
 
+.fish_feedback {
+    margin: 3rem 3rem 0 0;
+}
 
+.cat_img {
+    text-align: center;
+    margin-bottom: 5rem;
+}
 
 
 /* Кнопка наверх by De'knees */
