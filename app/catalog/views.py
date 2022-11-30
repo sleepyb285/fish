@@ -192,3 +192,7 @@ def feedback_new(request):
 def about(request):
     
     return render(request, 'about.html')
+
+def mst(request):
+
+    return render(request, 'mst/main.html')

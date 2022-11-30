@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/catalog/templates/MST/MST.css">
+    <title>
+        Спецтехника MST. Официальный дилер в России
+    </title>
+    {% load static %}
+    <link rel="icon" href="">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-3 logo_text">
+                    <img class="img-fluid" src="https://www.mst-tr.com/assets/images/logo.png" alt="MST_logo"
+                        style="    filter: invert(1);    max-width: 50%;">
+                </div>
+                <div class="col-7">
+
+                    <ul class="header_text">
+                        <li>Каталог</li>
+                        <li>О компании</li>
+                        <li>Сервис</li>
+                        <li>Запасные части</li>
+                        <li>Контакты</li>
+                    </ul>
+
+                </div>
+
+                <div class="col-2 header_phone"><a href="tel:8 (800) 775-45-18">8 (800) 775-45-18</a></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        тест футера
+        {% endblock %}
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
