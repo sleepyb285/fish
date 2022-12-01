@@ -3,11 +3,26 @@
 {% block content %}
 <div class="section swiper">
 
-    <div class="container swiper_container">
-        <div id="swiper" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="container-fluid swiper_container">
+        <div id="swiper" class="carousel carousel-dark slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="/catalog/templates/MST/pics/5plus_gallery10.jpg" class="d-block w-100" alt="...">
+                    <div class="container swiper_text">
+                        <div class="col orng_text">
+                            <div class="col" style="font-size: 3rem;">ДОРОЖНО-СТРОИТЕЛЬНАЯ </div>
+                            <div class="col" style="font-size: 3rem;">СПЕЦТЕХНИКА MST</div>
+                            <div class="col" style="font-size: 2rem;">ОТ ОФИЦИАЛЬНОГО ДИЛЕРА</div>
+                        </div>
+                        <div class="col white_text">
+                            <div class="row white_text">
+                                <div class="col-7"></div>
+                                <div class="col-2">Производство Турция</div>
+                                <div class="col-1">|</div>
+                                <div class="col-2">Гарантия 5 лет</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <img src="/catalog/templates/MST/pics/5plus_gallery10.jpg" class="d-block w-100" alt="...">
@@ -30,21 +45,7 @@
         </div>
     </div>
     <!-- Разобраться с абсолютным положением (почему работает сверху, но не справа) -->
-    <div class="container swiper_text">
-        <div class="col orng_text">
-            <div class="col" style="font-size: 3rem;">ДОРОЖНО-СТРОИТЕЛЬНАЯ </div>
-            <div class="col" style="font-size: 3rem;">СПЕЦТЕХНИКА MST</div>
-            <div class="col" style="font-size: 2rem;">ОТ ОФИЦИАЛЬНОГО ДИЛЕРА</div>
-        </div>
-        <div class="col white_text">
-            <div class="row white_text">
-                <div class="col-7"></div>
-                <div class="col-2">Производство Турция</div>
-                <div class="col-1">|</div>
-                <div class="col-2">Гарантия 5 лет</div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="col info_text">
         <div class="container">
@@ -65,42 +66,100 @@
     <div style="text-align: center; ">
         <h1 style="display: inline;">Популярные модели</h1>
         <!-- Подумать над стрелочкой -->
-        <a style="display: inline; text-decoration: none; color: #ffaa1c;" href=""> ---->ПЕРЕЙТИ В КАТАЛОГ</a>
+        <a style="display: inline; text-decoration: none; color: #ffaa1c;" href="">ПЕРЕЙТИ В КАТАЛОГ</a>
 
         <div class="container product_container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <a href="">
                         <div class="card">
                             <h2 style="font-size: 1rem;">Прекрасное название для этой техники MST или как там</h2>
                             <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
                             <div class="card_attr">
-                                <p class="attr">
+                                <p>
                                     <span>Lorem</span>
                                     <span>ipsum</span>
                                 </p>
-
+                                <p>
+                                    <span>dolor</span>
+                                    <span>sit amet</span>
+                                </p>
+                                <p>
+                                    <span>consectetur</span>
+                                    <span>adipiscing elit</span>
+                                </p>
                             </div>
-                            <div>цена там или еще чего</div>
+
+                            <div class="card_price">
+                                <span>1 000 000р</span>
+                                <span class="card_price_before">9 999 999р</span>
+                            </div>
+                            <div class="sale_badge">АКЦИЯ</div>
                         </div>
                     </a>
                 </div>
-                <div class="col-4">
-                    <div class="card">1</div>
-                </div>
-                <div class="col-4">
-                    <div class="card">1</div>
-                </div>
-                <div class="col-4">
-                    <div class="card">1</div>
-                </div>
+                <div class="col-3">
+                    <a href="">
+                        <div class="card">
+                            <h2 style="font-size: 1rem;">Прекрасное название для этой техники MST или как там</h2>
+                            <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
+                            <div class="card_attr">
+                                <p>
+                                    <span>Lorem</span>
+                                    <span>ipsum</span>
+                                </p>
+                                <p>
+                                    <span>dolor</span>
+                                    <span>sit amet</span>
+                                </p>
+                                <p>
+                                    <span>consectetur</span>
+                                    <span>adipiscing elit</span>
+                                </p>
+                            </div>
 
+                            <div class="card_price">
+                                <span>Уточнить стоимость</span>
+                                <span class="card_price_before"></span>
+                            </div>
+                            <div class="sale_badge" style="visibility: hidden;">АКЦИЯ</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="">
+                        <div class="card">
+                            <h2 style="font-size: 1rem;">Прекрасное название для этой техники MST или как там</h2>
+                            <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
+                            <div class="card_attr">
+                                <p>
+                                    <span>Lorem</span>
+                                    <span>ipsum</span>
+                                </p>
+                                <p>
+                                    <span>dolor</span>
+                                    <span>sit amet</span>
+                                </p>
+                                <p>
+                                    <span>consectetur</span>
+                                    <span>adipiscing elit</span>
+                                </p>
+                            </div>
 
+                            <div class="card_price">
+                                <span style="text-align: center;">100 000 000р</span>
+                                <span class="card_price_before"></span>
+                            </div>
+                            <div class="sale_badge" style="visibility: hidden;">АКЦИЯ</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <div class="card">1</div>
+                </div>
 
             </div>
         </div>
-
-
     </div>
 
 
@@ -110,28 +169,123 @@
 
 <div class="container callback">
     <!-- TODO форма для сбора данных -->
-    <span>1</span>
-    <span>2</span>
+    <span>имя</span>
+
+    <span>телефон</span>
     <a href="">Получить коммерческое предложение</a>
 </div>
 
 <div class="section features">
 
     <div class="container cat_features">
+        <div class="col-5">
+            <img class="img-fluid" src="https://www.mst-tr.com/assets/images/logo.png" alt="MST_logo"
+                style="    filter: invert(1);    ">
 
+            <ul class="cat_list">
+                <li><a href="">ЭКСКАВАТОРЫ</a></li>
+                <li><a href="">ЭКСКАВАТОРЫ-ПОГРУЗЧИКИ</a></li>
+                <li><a href="">ТЕЛЕСКОПИЧЕСКИЕ ПОГРУЗЧИКИ</a></li>
+            </ul>
+            <ul class="cat_text">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fermentum felis a velit consequat
+                    sollicitudin. Morbi sed eros tempus, volutpat ante vitae, rhoncus leo. Vestibulum eu velit id magna
+                    rutrum interdum. Pellentesque ut condimentum ipsum, in tempor mi. Morbi maximus lectus sed ante
+                    finibus, a lacinia mi tristique. Vivamus sed nulla in velit sodales pretium id a lectus. Duis ut
+                    sapien posuere, accumsan diam eget, vulputate mi. Sed ultricies tristique ex, sit amet laoreet justo
+                    tincidunt dolor, nec egestas urna lorem id purus.</li>
+
+                <li>Ut feugiat risus at nulla consequat auctor. Nam ac quam eget leo dictum bibendum eu vel nunc. In a
+                    nibh sem. Pellentesque tincidunt ipsum id nulla bibendum lobortis. Phasellus aliquam tincidunt
+                    sapien eu commodo. Curabitur metus arcu, dignissim id pretium eget, consectetur eget diam. Quisque
+                    felis metus, fringilla a porta a, tristique eget velit.</li>
+            </ul>
+
+        </div>
+        <div class="cat_image">
+            <img src="/catalog/templates/MST/pics/urun_detail_5plus.png">
+        </div>
     </div>
-
+</div>
+<div class="section p_features">
     <div class="container prod_features">
+        <div class="row">
+            <div class="col-7" style="text-align: right;">
+                <h1>Преимущества техники</h1>
+            </div>
+
+            <div class="col-5">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fermentum felis a velit
+                        consequat
+                        sollicitudin. Morbi sed eros tempus, volutpat ante vitae, rhoncus leo. Vestibulum eu velit id
+                        magna
+                        rutrum interdum. Pellentesque ut condimentum ipsum, in tempor mi. Morbi maximus lectus sed ante
+                        finibus, a lacinia mi tristique.</li>
+                    <li>Vivamus sed nulla in velit sodales pretium id a lectus. Duis ut
+                        sapien posuere, accumsan diam eget, vulputate mi. Sed ultricies tristique ex, sit amet laoreet
+                        justo
+                        tincidunt dolor, nec egestas urna lorem id purus.</li>
+                    <li>Ut feugiat risus at nulla consequat auctor. Nam ac quam eget leo dictum bibendum eu vel nunc. In
+                        a
+                        nibh sem. Pellentesque tincidunt ipsum id nulla bibendum lobortis.</li>
+                    <li>Phasellus aliquam tincidunt
+                        sapien eu commodo. Curabitur metus arcu, dignissim id pretium eget, consectetur eget diam.
+                        Quisque
+                        felis metus, fringilla a porta a, tristique eget velit.</li>
+                </ul>
+            </div>
+        </div>
+
+
+
 
     </div>
 
 </div>
 
 <div class="container callback_misc">
-
+    <span>пока не кнопка</span>
+    <span>еще одна не кнопка</span>
 </div>
+<!-- Да простит меня пресвятой Денис, но сделаю я это колами шестыми -->
+<div class="section callback_form">
+    <div class="container ">
+        <div class="row">
+            <div class="col-6">
+                <div class="callback_form_orange">
+                    <h1 style="font-size: 3.5rem;">ПОКУПКА ТЕХНИКИ</h1>
+                    <span style="font-size: 3.5rem;">В ЛИЗИНГ</span>
+                    <h2>НА УНИКАЛЬНЫХ УСЛОВИЯХ</h2>
+                </div>
+                <div class="callback_form_white">
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur, mauris vel pharetra
+                            lacinia.</li>
 
-<div class="container callback_form">
+                        <li>Aliquam eu maximus tellus, non sodales arcu. Curabitur dignissim elit eu mauris viverra
+                            varius.</li>
+
+                        <li>Ut sapien turpis, pulvinar et ornare ac, pharetra sed erat. In vel dictum nulla.
+                            Pellentesque eleifend urna eu turpis vestibulum luctus.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+
+                <div>
+                    <form class="callback_form_form">
+                        <input type="text" id="name" name="name" placeholder="Имя">
+                        <input type="number" id="inn" name="inn" placeholder="ИНН">
+                        <input type="org" id="name" name="org" placeholder="Название организации">
+                        <input type="email" id="mail" name="mail" placeholder="e-mail">
+                        <input type="tel" id="phone" name="phone" placeholder="Телефон">
+                        <input type="submit" id="send" name="send" value="SSS">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
