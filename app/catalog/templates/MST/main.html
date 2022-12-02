@@ -4,7 +4,7 @@
 <div class="section swiper">
 
     <div class="container-fluid swiper_container">
-        <div id="swiper" class="carousel carousel-dark slide">
+        <div id="swiper" class="carousel carousel-dark carousel-fade slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="/catalog/templates/MST/pics/5plus_gallery10.jpg" class="d-block w-100" alt="...">
@@ -73,21 +73,32 @@
                 <div class="col-3">
                     <a href="">
                         <div class="card">
-                            <h2 style="font-size: 1rem;">Прекрасное название для этой техники MST или как там</h2>
+
+                            <div class="card_title">
+                                <div>
+                                    Экскаватор-погрузчик
+                                </div>
+
+                                <div>
+                                    MST MS44 S
+                                </div>
+                            </div>
+
                             <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
                             <div class="card_attr">
-                                <p>
+                                <!-- Забыл, как там лесенку надо было выравнивать... -->
+                                <div>
                                     <span>Lorem</span>
                                     <span>ipsum</span>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     <span>dolor</span>
                                     <span>sit amet</span>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     <span>consectetur</span>
                                     <span>adipiscing elit</span>
-                                </p>
+                                </div>
                             </div>
 
                             <div class="card_price">
@@ -169,10 +180,12 @@
 
 <div class="container callback">
     <!-- TODO форма для сбора данных -->
-    <span>имя</span>
+    <form>
+        <input type="text" name="name" placeholder="    Имя">
+        <input type="tel" name="phone" placeholder="    Телефон">
+        <input type="submit" id="call_send" name="send" value="Получить коммерческое предложение">
 
-    <span>телефон</span>
-    <a href="">Получить коммерческое предложение</a>
+    </form>
 </div>
 
 <div class="section features">
@@ -280,7 +293,7 @@
                         <input type="org" id="name" name="org" placeholder="Название организации">
                         <input type="email" id="mail" name="mail" placeholder="e-mail">
                         <input type="tel" id="phone" name="phone" placeholder="Телефон">
-                        <input type="submit" id="send" name="send" value="SSS">
+                        <input type="submit" id="send" name="send" value="Получить КП">
                     </form>
                 </div>
             </div>

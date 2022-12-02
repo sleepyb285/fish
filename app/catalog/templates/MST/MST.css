@@ -26,6 +26,11 @@ header .container .row {
     position: static;
 }
 
+.header_text li a{
+    text-decoration: none;
+    color: white;
+}
+
 .header_phone {
     align-items: center;
     display: flex;
@@ -34,10 +39,6 @@ header .container .row {
 
 .logo_text {
     font-size: smaller;
-}
-
-.logo_text p {
-    margin-bottom: 0;
 }
 
 
@@ -88,13 +89,12 @@ header .container .row {
 
 .info_text {
     background-color: #313e4f;
-    padding: 1rem 0 1rem 0;
+    padding: 2rem 0 2rem 0;
 
 }
 
 .popular {
     background-color: #dcdcdc;
-    padding: 1rem 0 1rem 0;
     box-shadow: 0px 18px 11px -9px rgba(23, 40, 52, 0.2);
 }
 
@@ -114,27 +114,36 @@ header .container .row {
     padding: 1rem 2rem 1rem 2rem;
     box-shadow: 0px 16px 18px 0px rgba(34, 60, 80, 0.2);
     margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+}
+
+.card_title {
+    font-weight: 600;
 }
 
 .card_attr {
     color: gray;
     border-top: gray solid 1px;
     border-bottom: gray solid 1px;
-    padding: 1rem 1rem 1rem 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    padding: 1rem 0;
 }
 
-.card_attr p {
-    margin: 0 0 0 0;
+.card_attr div {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
+
+/* .card_attr div span {
+
+} */
 
 .card_price {
     color: #ffaa1c;
     padding-top: 1rem;
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 1.5rem;
 }
 
@@ -148,18 +157,36 @@ header .container .row {
 .sale_badge {
     color: #ffffff;
     width: 6rem;
+    font-size: 1.2rem;
     background-color: #ffaa1c;
-    position: relative;
-    bottom: -1.1rem;
+    position: absolute;
+    bottom: 0;
     font-size: 0.8rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 
-.callback {
+.callback form {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+
+.callback form input {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px 10px rgba(34, 60, 80, 0.2);
+    font-weight: 500;
+}
+
+#call_send {
+    color: black;
+    background-color: #ffaa1c;
+    width: 50%;
+    height: 2.5rem;
 }
 
 .features {
