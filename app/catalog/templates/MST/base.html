@@ -15,33 +15,30 @@
     <link rel="icon" href="">
 </head>
 <!-- 
-Нав
-Контейнер
-враппер
-контент
-тайтл (заголовок и пикча)
-кнопка закрывания
-ул
-ли
-див
-а
--->
+    Итак, требуется сделать следующее:
+    Прописать разворачивание шапки на размере L и выше, остальные варианты должны быть свернуты;
+    Оффканва должна быть неактивна в большом размере, кнопки быть не должно;
+    Возможно, есть смысл (если это возможно и не запарно) закрепить меню фикседом на мелкофонах;
+    Поработать над карточками (сыпятся на мелкофонах) (прописать колы на меньшие размеры, или отфлексить?);
+    Доделать нижнюю форму (и потестить с картинкой) ((черный фон и прозрачность?));
+    Допилить тени на все блоки
+
+ -->
 <body>
     <header>
-        <div class="container">
-
-            <div class="row">
-                <div class="col-3 logo_text">
-                    <img class="img-fluid" src="https://www.mst-tr.com/assets/images/logo.png" alt="MST_logo"
-                        style="    filter: invert(1);    max-width: 50%;">
-                </div>
-                <div class="col-7">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span style="color: white">тык</span>
-                    </button>
-                    <nav class="navbar navbar-expand-lg">
-                        <div class="collapse" id="navbarNav">
+        <div class="container-fluid header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="img-fluid" src="https://www.mst-tr.com/assets/images/logo.png" alt="MST_logo"
+                            style="    filter: invert(1);">
+                    </div>
+                    <div class="col-3">
+                        <p>Официальный сайт MST</p>
+                        <p>Продажи спецтехники в России</p>
+                    </div>
+                    <div class="col-5">
+                        <nav>
                             <ul class="header_text">
                                 <li><a href="#">Каталог</a></li>
                                 <li><a href="#">О компании</a></li>
@@ -49,62 +46,14 @@
                                 <li><a href="#">Запасные части</a></li>
                                 <li><a href="#">Контакты</a></li>
                             </ul>
-                        </div>
-                    </nav>
-
+                        </nav>
+                    </div>
+                    <div class="col-2 header_phone"><a style="text-decoration: none;
+                        color: white;" href="tel:8 (800) 775-45-18">8 (800) 775-45-18</a>
+                    </div>
                 </div>
-
-                <div class="col-2 header_phone"><a style="    text-decoration: none;
-                    color: white;" href="tel:8 (800) 775-45-18">8 (800) 775-45-18</a></div>
             </div>
         </div>
-
-        <!-- <nav>
-            <div class="container-fluid header">
-                <a class="navbar-brand" href="#">
-                    <img class="img-fluid" src="https://www.mst-tr.com/assets/images/logo.png" alt="MST_logo"
-                        style="    filter: invert(1);    max-width: 50%;">
-                    <div class="logo_text">
-                        <div>
-                            Официальный сайт MST
-                        </div>
-
-                        <div>
-                            Продажа спецтехники в России
-                        </div>
-                    </div>
-
-                </a>
-                <button class="nav_button" type="button" data-bs-toggle="offcanvas" data-bs-target="#header_nav"
-                    aria-controls="header_nav">
-                    тык
-                </button>
-                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="header_nav"
-                    aria-labelledby="offcanvasDarkNavbarLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MST</h5>
-                        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="header_text">
-                            <li>Каталог</li>
-                            <li>О компании</li>
-                            <li>Сервис</li>
-                            <li>Запасные части</li>
-                            <li>Контакты</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav> -->
-
-
-
-
-
-
-
     </header>
 
     <main>
@@ -114,10 +63,39 @@
 
     <footer>
         <div class="container">
-            <img class="img-fluid" src="https://www.mst-tr.com/assets/images/logo.png" alt="MST_logo">
+            <div class="row">
+                <div class="col-2">
+                    <img class="img-fluid" src="https://www.mst-tr.com/assets/images/logo.png" alt="MST_logo">
+                    <span style="font-size: 0.75rem;">Официальный дилер по продаже техники MST в России</span>
+                </div>
+                <div class="col-7">
+                    <ul class="footer_text">
+                        <li><a href="#">Каталог</a></li>
+                        <li><a href="#">О компании</a></li>
+                        <li><a href="#">Сервис</a></li>
+                        <li><a href="#">Запасные части</a></li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <div>Контакты</div>
+                    <div>
+                        <a style="text-decoration: none;
+                        color: black;" href="tel:8 (800) 775-45-18">8 (800) 775-45-18</a>
+                    </div>
+                    <div class="footer_callback"><button>Заказать звонок</button></div>
 
+                </div>
+            </div>
+            <div class="footer_rights">
+                <div>
+                    &#169 2022 Все права защищены
+                </div>
+                <div>
+                    Информация, размещенная на этом сайте, не является публичной офертой, но прикольная
+                </div>
+            </div>
         </div>
-
+        
 
     </footer>
 
