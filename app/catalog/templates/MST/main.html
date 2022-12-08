@@ -1,68 +1,100 @@
 {% extends "mst/base.html" %}
 
 {% block content %}
-<script>
-    const swiper = new Swiper('.swiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: true,
-
-        // If we need pagination
-        // pagination: {
-        //     el: '.swiper-pagination',
-        // },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-
-        // And if we need scrollbar
-        // scrollbar: {
-        //     el: '.swiper-scrollbar',
-        // },
-    });
-</script>
 <div class="section swiper_section">
 
 
     <div class="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/catalog/templates/MST/pics/5plus_gallery10.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="/catalog/templates/MST/pics/gray_MST.png" alt=""></div>
-            <div class="swiper-slide"><img src="/catalog/templates/MST/pics/urun_detail_5plus.png" alt=""></div>
-        </div>
-    </div>
-
-
-
-    <div class="col info_text">
-        <div class="container">
-            <div class="row">
-                <div class="col">Вся техника и запасные части на собственных складах по всей России.</div>
-                <div class="col">Прямые поставки техники с завода производителя по доступным ценам. Мы - официальный
-                    дилер MST.
+            <div class="swiper-slide"><img src="/catalog/templates/MST/pics/5plus_gallery10.jpg" alt="">
+                <div class="swiper_text">
+                    <div class="swiper_text_main">
+                        Дорожно-строительная спецтехника MST
+                        <div>
+                            От официального дилера
+                        </div>
+                    </div>
+                    <div class="swiper_text_sec">
+                        <div>
+                            Производство Турция
+                        </div>
+                        <div>
+                            |
+                        </div>
+                        <div>
+                            Гарантия 5 лет
+                        </div>
+                    </div>
                 </div>
-                <div class="col">Собственная дилерская сеть продаж, а так же сервисных центров. Поставка по всей
-                    России
+            </div>
+            <div class="swiper-slide"><img src="/catalog/templates/MST/pics/gray_MST.png" alt="">
+                <div class="swiper_text">
+                    <div class="swiper_text_main">
+                        Дорожно-строительная спецтехника MST
+                        <div>
+                            От официального дилера
+                        </div>
+                    </div>
+                    <div class="swiper_text_sec">
+                        <div>
+                            Производство Турция
+                        </div>
+                        <div>
+                            |
+                        </div>
+                        <div>
+                            Гарантия 5 лет
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide"><img src="/catalog/templates/MST/pics/urun_detail_5plus.png" alt="">
+                <div class="swiper_text">
+                    <div class="swiper_text_main">
+                        Дорожно-строительная спецтехника MST
+                        <div>
+                            От официального дилера
+                        </div>
+                    </div>
+                    <div class="swiper_text_sec">
+                        <div>
+                            Производство Турция
+                        </div>
+                        <div>
+                            |
+                        </div>
+                        <div>
+                            Гарантия 5 лет
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+
+
+        <div class="container-fluid info_text">
+                <div>Вся техника и запасные части на собственных складах по всей России.</div>
+                <div>Прямые поставки техники с завода производителя по доступным ценам. Мы - официальный
+                    дилер MST.
+                </div>
+                <div>Собственная дилерская сеть продаж, а так же сервисных центров. Поставка по всей
+                    России.
+                </div>
+        </div>
+
 </div>
 
 <div class="section popular">
     <div class="pop_title" style="text-align: center; ">
         <h1 style="display: inline;">Популярные модели</h1>
-        <!-- Подумать над стрелочкой -->
-        <a style="display: inline; text-decoration: none; color: #ffaa1c;" href="">ПЕРЕЙТИ В КАТАЛОГ</a>
+
+        <a style="display: inline; text-decoration: none; color: #ffaa1c;" href="#">ПЕРЕЙТИ В КАТАЛОГ</a>
 
         <div class="container product_container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-12">
-                    <a href="">
+                    <a href="#">
                         <div class="card">
 
                             <div class="card_title">
@@ -77,7 +109,6 @@
 
                             <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
                             <div class="card_attr">
-                                <!-- Забыл, как там лесенку надо было выравнивать... -->
                                 <div>
                                     <span>Lorem</span>
                                     <span>ipsum</span>
@@ -101,23 +132,31 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-12">
-                    <a href="">
+                    <a href="#">
                         <div class="card">
-                            <h2 style="font-size: 1rem;">Прекрасное название для этой техники MST или как там</h2>
+                            <div class="card_title">
+                                <div>
+                                    Экскаватор-погрузчик
+                                </div>
+
+                                <div>
+                                    MST MS44 S
+                                </div>
+                            </div>
                             <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
                             <div class="card_attr">
-                                <p>
+                                <div>
                                     <span>Lorem</span>
                                     <span>ipsum</span>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     <span>dolor</span>
                                     <span>sit amet</span>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     <span>consectetur</span>
                                     <span>adipiscing</span>
-                                </p>
+                                </div>
                             </div>
 
                             <div class="card_price">
@@ -129,23 +168,31 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-12">
-                    <a href="">
+                    <a href="#">
                         <div class="card">
-                            <h2 style="font-size: 1rem;">Прекрасное название для этой техники MST или как там</h2>
+                            <div class="card_title">
+                                <div>
+                                    Экскаватор-погрузчик
+                                </div>
+
+                                <div>
+                                    MST MS44 S
+                                </div>
+                            </div>
                             <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
                             <div class="card_attr">
-                                <p>
+                                <div>
                                     <span>Lorem</span>
                                     <span>ipsum</span>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     <span>dolor</span>
                                     <span>sit amet</span>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     <span>consectetur</span>
                                     <span>adipiscing</span>
-                                </p>
+                                </div>
                             </div>
 
                             <div class="card_price">
@@ -157,7 +204,40 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-12">
-                    <div class="card">1</div>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card_title">
+                                <div>
+                                    Экскаватор-погрузчик
+                                </div>
+
+                                <div>
+                                    MST MS44 S
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="/catalog/templates/MST/pics/urun_detail_5plus.png">
+                            <div class="card_attr">
+                                <div>
+                                    <span>Lorem</span>
+                                    <span>ipsum</span>
+                                </div>
+                                <div>
+                                    <span>dolor</span>
+                                    <span>sit amet</span>
+                                </div>
+                                <div>
+                                    <span>consectetur</span>
+                                    <span>adipiscing</span>
+                                </div>
+                            </div>
+
+                            <div class="card_price">
+                                <span style="text-align: center;">999 999 999р</span>
+                                <span class="card_price_before"></span>
+                            </div>
+                            <div class="sale_badge" style="visibility: hidden;">АКЦИЯ</div>
+                        </div>
+                    </a>
                 </div>
 
             </div>
@@ -186,9 +266,9 @@
                 style="    filter: invert(1);    ">
 
             <ul class="cat_list">
-                <li><a href="">ЭКСКАВАТОРЫ</a></li>
-                <li><a href="">ЭКСКАВАТОРЫ-ПОГРУЗЧИКИ</a></li>
-                <li><a href="">ТЕЛЕСКОПИЧЕСКИЕ ПОГРУЗЧИКИ</a></li>
+                <li><a href="#">ЭКСКАВАТОРЫ</a></li>
+                <li><a href="#">ЭКСКАВАТОРЫ-ПОГРУЗЧИКИ</a></li>
+                <li><a href="#">ТЕЛЕСКОПИЧЕСКИЕ ПОГРУЗЧИКИ</a></li>
             </ul>
             <ul class="cat_text">
                 <li>Надежные и производительные экскаваторы-погрузчики, экскаваторы и телескопические погрузчики
@@ -238,7 +318,7 @@
     <a href="#" class="misc_call"><span class="misc_phone">8 (800) 775-45-18</span><span> Отдел запасных
             частей</span></a>
 </div>
-<!-- Да простит меня пресвятой Денис, но сделаю я это колами шестыми -->
+
 <div class="section callback_form">
 
     <div class="container ">
@@ -276,5 +356,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
