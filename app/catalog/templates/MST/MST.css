@@ -68,14 +68,12 @@ header .container .row {
 }
 
 .swiper {
-    height: 1000px;
+    height: 100vh;
 }
 
 .swiper-slide img {
     position: center;
-    height: 100%;
-    /* width: 100%; */
-    /* спорная херня */
+    height: 100vh;
 }
 
 .swiper_text {
@@ -83,8 +81,8 @@ header .container .row {
     flex-direction: column;
     text-align: right;
     position: absolute;
-    top: 12rem;
-    right: 18rem;
+    top: 20vh;
+    right: 14vw;
     width: 50%;
 }
 
@@ -111,17 +109,17 @@ header .container .row {
     padding-left: 4rem;
 }
 
-.info_text {
-    background-color: #313e4f;
-    padding: 2rem 18rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.swiper_svg {
+    text-align: center;
 }
 
-.info_text div {
-    width: max-content;
-    padding: 1rem;
+.swiper_svg svg {
+    fill: white;
+}
+
+.swiper_svg svg:hover {
+    fill: #ffaa1c;
+    transition-duration: 0.3s;
 }
 
 .popular {
@@ -133,28 +131,58 @@ header .container .row {
     padding-top: 2rem;
 }
 
-/* .product_container {
 
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-} */
+.product_container a .card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    content: '';
+    transition: transform 0.6s;
+    transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+}
 
 .product_container a {
     text-decoration: none;
     color: black;
 }
 
+.product_container a:hover .card::before {
+    transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 100%, 0);
+}
+
+.product_container a:hover img {
+    opacity: 0.1;
+    transition-delay: 0.1s;
+}
+
+.product_container a:hover .hover_text {
+    opacity: 1;
+    transition-delay: 0.1s;
+    transition-duration: 0.5s;
+}
+
 .card {
     padding: 1rem;
     box-shadow: 0px 16px 18px 0px rgba(34, 60, 80, 0.2);
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     border-radius: 15px;
 }
 
 .card_title {
     font-weight: 600;
+}
+
+.hover_text {
+    opacity: 0;
+    font-size: 2rem;
+    color: red;
+    position: absolute;
+    align-self: center;
+    top: 8rem;
 }
 
 .card_attr {
@@ -165,13 +193,13 @@ header .container .row {
     padding: 1rem 0;
 }
 
-.card_attr div {
+.attr_container {
     display: flex;
     justify-content: space-between;
 }
 
-.card_attr div span {
-    flex-basis: 60%;
+.attr_container span {
+    flex-basis: 40%;
 }
 
 .card_price {
@@ -195,10 +223,11 @@ header .container .row {
     font-size: 1.2rem;
     background-color: #ffaa1c;
     position: absolute;
-    bottom: 0;
+    top: 0;
+    left: 0;
     font-size: 0.8rem;
     border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .callback form {
